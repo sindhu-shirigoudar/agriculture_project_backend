@@ -26,8 +26,10 @@ import authapp
 
 from django.contrib import admin
 from django.urls import path, include
+import agriapp
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/',include('authapp.urls')),
+    path('', include('agriapp.urls')),
 ]
