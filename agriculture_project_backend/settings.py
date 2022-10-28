@@ -26,9 +26,6 @@ SECRET_KEY = 'django-insecure-(7o=--3lk6g@wbwgj9q!u)3l52oet(9utro!rm9p&qzbkopahj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*'] # allowed DNSthat can request for API request
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -133,7 +130,9 @@ STATICFILES_DIRS =[
     os.path.join(BASE_DIR, 'static')
 ]
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static-cdn-local')
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'www.arkashinesinnovations.com', 'arkashinesinnovations.com']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
