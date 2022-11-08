@@ -13,28 +13,20 @@
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <h3 class="my-heading ">ArkaShine Innovations Pvt Ltd</h3>
+                    <h3 class="my-heading">ArkaShine Innovations Pvt Ltd</h3>
                 </a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <!-- <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" onclick="console.log('fghjk')">
                     <span class="fa fa-bars mfa-white"></span>
-                </button>   
-                <div class="collapse navbar-collapse" id="navbarResponsive">
+                </button>    -->
+                <!-- <div class="collapse navbar-collapse" id="navbarResponsive"> -->
                     <ul class="navbar-nav ml-auto">
-					    <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
-                        </li>
                          <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            <a class="nav-link" href="{% url 'login1' %}">Login</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#contact">Contact</a>
-                        </li>
-
                     </ul>
-                </div>
+                <!-- </div> -->
             </div>
         </nav>
-
         <div class="tophead" >
             <div class="container-fluid">
                 <div class="row">
@@ -157,7 +149,7 @@
                     </p> -->
                 <div class="row">
                     <div class="col-md-4 wow bounceInUp" data-wow-duration="1.4s">
-                        <div class="card">
+                        <div class="card"  style="height: 470px;">
                             <figure class="text-center">
                                 <img src="{% static '/' %}" class="img-fluid">
                             </figure>
@@ -172,7 +164,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 wow bounceInUp" data-wow-duration="1.4s">
-                        <div class="card">
+                        <div class="card"  style="height: 470px;">
                             <figure class="text-center">
                                 <img src="https://images.pexels.com/photos/929831/pexels-photo-929831.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" class="img-fluid">
                             </figure>
@@ -191,7 +183,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 wow bounceInUp" data-wow-duration="1.4s">
-                        <div class="card">
+                        <div class="card"  style="height: 470px;">
                             <figure class="text-center">
                                 <img src="https://images.pexels.com/photos/938965/pexels-photo-938965.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" class="img-fluid">
                             </figure>
@@ -219,18 +211,21 @@
     							<span class="section-heading-upper">Get in Touch With Us</span>
                              </h2>
                             <div class="contactForm">
-                                <form>
+                                <div style="color: red">
+                                    {{errors}}
+                                </div>
+                                <form  method="POST"> {% csrf_token %}
                                     <div class="form-group">
                                         <input type="text" name="name" class="form-control" placeholder="Name" required="required">
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" name="email" class="form-control" placeholder="Email" required="required">
+                                        <input type="email" name="mail" class="form-control" placeholder="Email" required="required">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="mobile" class="form-control" placeholder="Mobile" required="required">
+                                        <input type="text" name="phone" class="form-control" placeholder="phone" required="required">
                                     </div>
                                     <div class="form-group">
-                                        <textarea class="form-control" rows="4" cols="50" placeholder="Message"></textarea>
+                                        <textarea class="form-control" rows="4" cols="50" placeholder="Message" name="message"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-12">

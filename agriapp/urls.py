@@ -2,9 +2,10 @@
 # from .views import index
 from django.urls import path
 from django.views.generic import TemplateView
+from . import views as v
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name="home1.html"), name = "home"),
+    path('',  v.home, name = "home"),
     path('login/', TemplateView.as_view(template_name="login.html"), name = "login"),
     path('login1/', TemplateView.as_view(template_name="login1.html"), name = "login1"),
     path('acess_denied/', TemplateView.as_view(template_name="acess_denied.html"), name = "acess_denied"),
