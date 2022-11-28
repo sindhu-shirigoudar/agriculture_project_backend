@@ -33,7 +33,8 @@ def login(request):
         user = auth.authenticate(username = username, password = password)
         if user is not None:
             auth.login(request,user)
-            template_name = 'home1.html'
+            # template_name = '/map/map_index.html'
+            return redirect('/map/')
         else:
             template_name = 'login1.html'
             context       =  {'error' : 'Invalid username or password'}
@@ -41,8 +42,14 @@ def login(request):
     
 def logout(request):
     auth.logout(request)
+    return redirect('/')
 
 @login_required(login_url='/login1/')    
 def users(request):
+    template_name = "users.html"
+    return render(request, template_name)
+
+@login_required(login_url='/login1/')    
+def add_devise(request):
     template_name = "users.html"
     return render(request, template_name)

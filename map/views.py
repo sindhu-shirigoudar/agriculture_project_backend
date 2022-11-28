@@ -2,9 +2,11 @@ from django.shortcuts import render
 import folium as fol
 import geocoder as geo
 import os
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required(login_url='/login1/')    
 def map_view(request):
     location  = geo.osm('IN')
     laitude   = location.lat
