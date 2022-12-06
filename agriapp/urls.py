@@ -13,8 +13,10 @@ urlpatterns = [
     path('register/', TemplateView.as_view(template_name="register.html"), name = "register"),
     path('add-devise/', v.add_devise, name = "add-devise"),
     path('device-list/', TemplateView.as_view(template_name="device_list.html"), name = "device-details"),
-    path('device-details/', TemplateView.as_view(template_name="device_details.html"), name = "device-list"),
+    path('device-details/', TemplateView.as_view(template_name="devise_details1.html"), name = "device-list"),
+    path('device-details1/', TemplateView.as_view(template_name="device_details.html"), name = "device-list1"),
     path('users/',v.users, name = "users"),
     path('forgot_password/', TemplateView.as_view(template_name="forgot_password.html"), name = "forgot_password"),
+    path('notifications/', TemplateView.as_view(template_name="notifications.html"), name = "notifications"),
 ]
 
