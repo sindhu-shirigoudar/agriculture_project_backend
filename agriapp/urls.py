@@ -11,7 +11,7 @@ urlpatterns = [
     path('logout/', v.logout, name = "logout"),
     path('acess_denied/', TemplateView.as_view(template_name="acess_denied.html"), name = "acess_denied"),
     path('register/', TemplateView.as_view(template_name="register.html"), name = "register"),
-    path('add-devise/', TemplateView.as_view(template_name="add_devise.html"), name = "add-devise"),
+    path('add-devise/', v.add_devise, name = "add-devise"),
     path('device-list/', TemplateView.as_view(template_name="device_list.html"), name = "device-details"),
     path('device-details/', TemplateView.as_view(template_name="device_details.html"), name = "device-list"),
     path('users/',v.users, name = "users"),

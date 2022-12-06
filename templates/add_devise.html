@@ -31,15 +31,29 @@
     padding: 1.5rem 1.5rem;
 }
 </style>
-<form action="">
+<!-- navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" style="height: 30px;">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'map' %}">
+          <h3 class="my-heading" style="font-size: 15px;">ArkaShine Innovations Pvt Ltd</h3>
+      </a>
+          <ul class="navbar-nav ml-auto">
+               <li class="nav-item">
+                  <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+              </li>
+          </ul>
+  </div>
+</nav>
+<!-- end navbar -->
+<form action="" class="mt-4" method="POST"> {% csrf_token %}
   <div class="container-fluid">
 
     <div class="container">
       <!-- Title -->
       <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
-        <div class="hstack gap-3">
-          <a href="{% url 'map' %}" class="btn btn-light btn-sm btn-icon-text"><i class="bi bi-x"></i> <span class="text">Cancel</span></a>
-          <button class="btn btn-primary btn-sm btn-icon-text"><i class="bi bi-save"></i> <span class="text">Save</span></button>
+        <div class="hstack gap-3" style="width:100%">
+          <a href="{% url 'map' %}" class="btn btn-light btn-sm btn-icon-text w-50"><i class="bi bi-x"></i> <span class="text">Cancel</span></a>
+          <button class="btn btn-primary btn-sm btn-icon-text w-50" style="float: right"><i class="bi bi-save"></i> <span class="text">Save</span></button>
         </div>
       </div>
     
@@ -54,14 +68,15 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="mb-3">
+                    <span style="color: red;"></span>
                     <label class="form-label">Name of individual or organization</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="name" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="mb-3">
                     <label class="form-label">Username / Device ID</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="devise_id" required>
                   </div>
                 </div>
               </div>
@@ -69,13 +84,13 @@
                 <div class="col-lg-6">
                   <div class="mb-3">
                     <label class="form-label">Serial ID</label>
-                    <input type="email" class="form-control">
+                    <input type="text" class="form-control" name="setial_no" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="mb-3">
                     <label class="form-label">Chipset number</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="chipset_no" required>
                   </div>
                 </div>
               </div>
@@ -83,13 +98,13 @@
                 <div class="col-lg-6">
                   <div class="mb-3">
                     <label class="form-label">Email</label>
-                    <input type="email" class="form-control">
+                    <input type="email" class="form-control" name="email" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="mb-3">
                     <label class="form-label">Phone number</label>
-                    <input type="text" class="form-control">
+                    <input type="phone" class="form-control" name="phone" required>
                   </div>
                 </div>
               </div>
@@ -101,27 +116,27 @@
               <h3 class="h6 mb-4">Address</h3>
               <div class="mb-3">
                 <label class="form-label">Address Line 1</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" name="address1" required>
               </div>
               <div class="mb-3">
                 <label class="form-label">Address Line 2</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" name="address2" required>
               </div>
               <div class="row">
                 <div class="col-lg-6">
                   <div class="mb-3">
                     <label class="form-label">Purchased Date or Sale commenced Date</label>
-                    <input type="email" class="form-control">
+                    <input type="date" class="form-control" name="purchase_date" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="mb-3">
                     <label class="form-label">Time of sale</label>
-                    <input type="text" class="form-control">
+                    <input type="time" class="form-control" name="time_of_sale" required>
                   </div>
                 </div>
               </div>
-              <div class="row">
+              <!-- <div class="row">
                 <div class="col-lg-6">
                     <div class="mb-3">
                       <label class="form-label">Latitude</label>
@@ -134,26 +149,26 @@
                     <input type="text" class="form-control">
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
         <!-- Right side -->
         <div class="col-lg-4">
           <!-- Location -->
-          <div class="card mb-4">
+          <!-- <div class="card mb-4">
             <div class="card-body">
                 <label class="form-label">Latitude</label>
                 <input type="text" class="form-control">
                 <label class="form-label">Longitude</label>
                 <input type="text" class="form-control">
               </div>
-          </div>
+          </div> -->
           <!-- warrenty -->
           <div class="card mb-4">
             <div class="card-body">
                 <label class="form-label">Warrenty</label>
-                <input type="text" class="form-control">
+                <input type="date" class="form-control" name="warrenty" required>
             </div>
             <script>
                 
@@ -161,7 +176,7 @@
             <div class="col-lg-6">
 
                 <!-- Example 5 -->
-                <canvas id="pieChart5" width="192" height="96" style="display: block; width: 192px; height: 96px;"></canvas>
+                <!-- <canvas id="pieChart5" width="192" height="96" style="display: block; width: 192px; height: 96px;"></canvas> -->
 
             </div>
           </div>
@@ -169,9 +184,9 @@
           <div class="card mb-4">
             <div class="card-body">
                 <label class="form-label">Amount paid</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" name="amount_paid" required>
                 <label class="form-label">Balance amount</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" name="balance_amount" required>
             </div>
           </div>
           <!-- Notes -->
@@ -182,7 +197,7 @@
             </div>
           </div> -->
           <!-- Notification settings -->
-          <div class="card mb-4">
+          <!-- <div class="card mb-4">
             <div class="card-body">
               <h3 class="h6">Notification Settings</h3>
               <ul class="list-group list-group-flush mx-n2">
@@ -215,7 +230,7 @@
                 </li>
               </ul>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

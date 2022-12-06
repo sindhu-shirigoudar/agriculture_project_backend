@@ -23,8 +23,9 @@ class Devise(models.Model):
     address2      = models.CharField(max_length=255)
     purchase_date = models.DateField()
     time_of_sale  = models.TimeField()
-    warrenty      = models.CharField(max_length=255)
+    warrenty      = models.DateField(max_length=255)
     amount_paid   = models.BigIntegerField()
+    balance_amount= models.BigIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 
 

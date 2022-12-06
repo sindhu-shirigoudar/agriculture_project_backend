@@ -4,7 +4,7 @@ from django.shortcuts import redirect # redirect to direct url redirect(to)
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 
-from .forms import ContactForm
+from .forms import ContactForm, DeviseForm
 
 
 # Create your views here.
@@ -44,12 +44,22 @@ def logout(request):
     auth.logout(request)
     return redirect('/')
 
-@login_required(login_url='/login1/')    
+@login_required(login_url='/')    
 def users(request):
     template_name = "users.html"
     return render(request, template_name)
 
-@login_required(login_url='/login1/')    
+@login_required(login_url='/')    
 def add_devise(request):
-    template_name = "users.html"
-    return render(request, template_name)
+    context = {'message' : ''}
+    if request.method == 'GET':
+        template_name = "add_devise.html"
+    elif request.method == 'POST':
+        form = DeviseForm(request.POST)
+        if form.is_valid():
+            form.save()
+            template_name = 'map/map_index.html'
+            context = {'message' : 'Devise added successfully'}
+        else:
+            return render(request, 'add_devise.html', {'errors': form.errors})
+    return render(request, template_name = template_name,)
