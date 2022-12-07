@@ -17,6 +17,7 @@ urlpatterns = [
     path('device-details1/', TemplateView.as_view(template_name="device_details.html"), name = "device-list1"),
     path('users/',v.users, name = "users"),
     path('forgot_password/', TemplateView.as_view(template_name="forgot_password.html"), name = "forgot_password"),
-    path('notifications/', TemplateView.as_view(template_name="notifications.html"), name = "notifications"),
+    path('notifications/', v.notifications, name = "notifications"),
+    path('notifications/<int:pk>/', v.notifications, name = "notifications"),
 ]
 

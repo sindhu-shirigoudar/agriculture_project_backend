@@ -33,30 +33,40 @@
           <h3>Notifications</h3>
         </div>
     </div>
-    <div class="alert alert-info">
-        <div class="container">
-            <div class="alert-icon">
-                <i class="material-icons">info_outline</i>
-            </div>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true"><i class="material-icons">clear</i></span>
-            </button>
+    {% for active_notif in notification_active  %}
+        <div class="alert alert-info mx-5">
+            <div class="container">
+                <div class="alert-icon">
+                    <i class="material-icons">info_outline</i>
+                </div>
+                <form action="" method="POST">{% csrf_token %}</form>
+                <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close"> -->
+                    <a href="{% url 'notifications' active_notif.pk %}">
+                        <span aria-hidden="true"><i class="material-icons" style="float: right;">clear</i></span>
+                    </a>
+                <!-- </button> -->
 
-            <b>Info alert:</b> You've got some friends nearby, stop looking at your phone and find them...
-        </div>
-    </div>
-    <div class="alert alert-success">
-        <div class="container">
-            <div class="alert-icon">
-                <i class="material-icons">check</i>
+                <b>{{ active_notif.name }}:</b> <b>{{ active_notif.phone }} </b> --> <b>{{ active_notif.mail }} :</b>  {{ active_notif.message }}
+
             </div>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true"><i class="material-icons">clear</i></span>
-            </button>
-            <b>Success Alert:</b> Yuhuuu! You've got your $11.99 album from The Weeknd
         </div>
-    </div>
-    <div class="alert alert-warning">
+    {% endfor %}
+    
+    {% for inactive_notif in notification_inactive  %}
+        <div class="alert alert-success  mx-5">
+            <div class="container">
+                <div class="alert-icon">
+                    <i class="material-icons">check</i>
+                </div>
+                <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true"><a href="#"><i class="material-icons">clear</i></a></span>
+                </button> -->
+                <b>{{ inactive_notif.name }}:</b> Yuhuuu! You've got your $11.99 album from The Weeknd
+            </div>
+        </div>
+    {% endfor %}
+
+    <!-- <div class="alert alert-warning">
          <div class="container">
              <div class="alert-icon">
                 <i class="material-icons">warning</i>
@@ -66,8 +76,8 @@
             </button>
              <b>Warning Alert:</b> Hey, it looks like you still have the "copyright ©  2015" in your footer. Please update it!
         </div>
-    </div>
-    <div class="alert alert-danger">
+    </div> -->
+    <!-- <div class="alert alert-danger">
          <div class="container">
              <div class="alert-icon">
                 <i class="material-icons">error_outline</i>
@@ -77,8 +87,8 @@
             </button>
              <b>Error Alert:</b> Damn man! You screwed up the server this time. You should find a good excuse for your Boss...
         </div>
-    </div>
-    <div class="alert alert-primary">
+    </div> -->
+    <!-- <div class="alert alert-primary">
         <div class="container">
             <div class="alert-icon">
                 <i class="material-icons">update</i>
@@ -88,11 +98,11 @@
             </button>
             <b>Primary Alert:</b> Good evening! You should upgrade your data today.
         </div>
-    </div>
+    </div> -->
     
-    <footer class="footer text-center ">
+    <!-- <footer class="footer text-center ">
         <p>Made with <a href="https://demos.creative-tim.com/material-kit/index.html" target="_blank">Material Kit</a> by Creative Tim</p>
-    </footer>
+    </footer> -->
     
     <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
 

@@ -5,6 +5,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 
 from .forms import ContactForm, DeviseForm
+from .models import ContactDetails
 
 
 # Create your views here.
@@ -63,3 +64,18 @@ def add_devise(request):
         else:
             return render(request, 'add_devise.html', {'errors': form.errors})
     return render(request, template_name = template_name,)
+
+@login_required(login_url='/')    
+def notifications(request, **kwargs):
+    if (kwargs):
+       data = ContactDetails.objects.get(pk = kwargs['pk'])
+       data.status = False
+       data.save()
+    
+    notifications_all = ContactDetails.objects.all()
+    template_name     = 'notifications.html'
+    context = {
+        'notification_active'   : notifications_all.filter(status=True),
+        'notification_inactive' : notifications_all.filter(status=False),
+    }
+    return render(request, template_name = template_name, context = context)
