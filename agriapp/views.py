@@ -5,7 +5,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 
 from .forms import ContactForm, DeviseForm
-from .models import ContactDetails
+from .models import ContactDetails, Devise
 
 
 # Create your views here.
@@ -62,6 +62,7 @@ def add_devise(request):
             template_name = 'map/map_index.html'
             context = {'message' : 'Devise added successfully'}
         else:
+            print(form.errors['amount_paid'])
             return render(request, 'add_devise.html', {'errors': form.errors})
     return render(request, template_name = template_name,)
 
@@ -77,5 +78,16 @@ def notifications(request, **kwargs):
     context = {
         'notification_active'   : notifications_all.filter(status=True),
         'notification_inactive' : notifications_all.filter(status=False),
+    }
+    return render(request, template_name = template_name, context = context)
+
+@login_required(login_url='/')    
+def devise_list(request, **kwargs):
+    devises = Devise.objects.all()
+    template_name     = 'device_list.html'
+    
+    context = {
+        'devise_count' :len(devises),
+        'devises'      : devises,
     }
     return render(request, template_name = template_name, context = context)

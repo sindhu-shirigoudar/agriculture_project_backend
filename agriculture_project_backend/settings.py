@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'map',
     # 'knox',
     # 'djoser',
-    # 'rest_framework',
+    'rest_framework',
     # 'rest_framework.authtoken',
 ]
 
