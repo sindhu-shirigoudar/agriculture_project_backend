@@ -34,7 +34,7 @@
 <!-- navbar -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" style="height: 30px;">
   <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'map' %}">
+      <a class="navbar-brand" href="{% url 'dsahboard' %}">
           <h3 class="my-heading" style="font-size: 15px;">ArkaShine Innovations Pvt Ltd</h3>
       </a>
           <ul class="navbar-nav ml-auto">
@@ -45,7 +45,6 @@
   </div>
 </nav>
 <!-- end navbar -->
-{{errors.amount_paid}}
 <form action="" class="mt-4" method="POST"> {% csrf_token %}
   <div class="container-fluid">
 
@@ -69,43 +68,60 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="mb-3">
-                    <span style="color: red;"></span>
+                    {% if field_errors.name %}
+                      <span style="color: red;"> {{ field_errors.name }}</span>
+                    {% endif %}
                     <label class="form-label">Name of individual or organization</label>
-                    <input type="text" class="form-control" name="name" required>
+                    <input type="text" class="form-control" name="name" required value="{{ devise.name }}" {{disabled}}>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="mb-3">
+                    {% if field_errors.devise_id %}
+                      <span style="color: red;"> {{ field_errors.devise_id }}</span>
+                    {% endif %}
                     <label class="form-label">Username / Device ID</label>
-                    <input type="text" class="form-control" name="devise_id" required>
+                    <input type="text" class="form-control" name="devise_id" required {{disabled}} value="{{ devise.devise_id }}">
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-6">
                   <div class="mb-3">
+                    {% if field_errors.setial_no %}
+                      <span style="color: red;"> {{ field_errors.setial_no }}</span>
+                    {% endif %}
                     <label class="form-label">Serial ID</label>
-                    <input type="text" class="form-control" name="setial_no" required>
+                    <input type="text" class="form-control" name="setial_no" required {{disabled}} value="{{ devise.setial_no }}">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="mb-3">
+                    {% if field_errors.chipset_no %}
+                      <span style="color: red;"> {{ field_errors.chipset_no }}</span>
+                    {% endif %}
                     <label class="form-label">Chipset number</label>
-                    <input type="text" class="form-control" name="chipset_no" required>
+                    <input type="text" class="form-control" name="chipset_no" required {{disabled}} value="{{ devise.chipset_no }}">
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-6">
                   <div class="mb-3">
+                    {% if field_errors.name %}
+                      <span style="color: red;"> {{ field_errors.email }}</span>
+                    {% endif %}
                     <label class="form-label">Email</label>
-                    <input type="email" class="form-control" name="email" required>
+                    <input type="email" class="form-control" name="email" required value="{{ devise.email }}">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="mb-3">
+                    {% if field_errors.phone %}
+                      <span style="color: red;"> {{ field_errors.phone }}</span>
+                    {% endif %}
                     <label class="form-label">Phone number</label>
-                    <input type="phone" class="form-control" name="phone" required>
+                    <input type="phone" class="form-control" name="phone" required value="{{ devise.phone }}">
                   </div>
                 </div>
               </div>
@@ -116,24 +132,36 @@
             <div class="card-body">
               <h3 class="h6 mb-4">Address</h3>
               <div class="mb-3">
+                {% if field_errors.address1 %}
+                      <span style="color: red;"> {{ field_errors.address1 }}</span>
+                    {% endif %}
                 <label class="form-label">Address Line 1</label>
-                <input type="text" class="form-control" name="address1" required>
+                <input type="text" class="form-control" name="address1" required value="{{ devise.address1 }}">
               </div>
               <div class="mb-3">
+                {% if field_errors.address2 %}
+                      <span style="color: red;"> {{ field_errors.address2 }}</span>
+                    {% endif %}
                 <label class="form-label">Address Line 2</label>
-                <input type="text" class="form-control" name="address2" required>
+                <input type="text" class="form-control" name="address2" required value="{{ devise.address2 }}">
               </div>
               <div class="row">
                 <div class="col-lg-6">
                   <div class="mb-3">
+                    {% if field_errors.purchase_date %}
+                      <span style="color: red;"> {{ field_errors.purchase_date }}</span>
+                    {% endif %}
                     <label class="form-label">Purchased Date or Sale commenced Date</label>
-                    <input type="date" class="form-control" name="purchase_date" required>
+                    <input type="date" class="form-control" name="purchase_date" required value="{{ devise.purchase_date }}">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="mb-3">
+                    {% if field_errors.time_of_sale %}
+                      <span style="color: red;"> {{ field_errors.time_of_sale }}</span>
+                    {% endif %}
                     <label class="form-label">Time of sale</label>
-                    <input type="time" class="form-control" name="time_of_sale" required>
+                    <input type="time" class="form-control" name="time_of_sale" required value="{{ devise.time_of_sale }}">
                   </div>
                 </div>
               </div>
@@ -168,8 +196,11 @@
           <!-- warrenty -->
           <div class="card mb-4">
             <div class="card-body">
+                {% if field_errors.warrenty %}
+                  <span style="color: red;"> {{ field_errors.warrenty }}</span>
+                {% endif %}
                 <label class="form-label">Warrenty</label>
-                <input type="date" class="form-control" name="warrenty" required>
+                <input type="date" class="form-control" name="warrenty" required value="{{ devise.warrenty }}">
             </div>
             <script>
                 
@@ -184,10 +215,16 @@
           <!-- Amount paid -->
           <div class="card mb-4">
             <div class="card-body">
+                {% if field_errors.amount_paid %}
+                  <span style="color: red;"> {{ field_errors.amount_paid }}</span>
+                {% endif %}
                 <label class="form-label">Amount paid</label>
-                <input type="text" class="form-control" name="amount_paid" required>
+                <input type="text" class="form-control" name="amount_paid" required value="{{ devise.amount_paid }}">
+                {% if field_errors.balance_amount %}
+                  <span style="color: red;"> {{ field_errors.balance_amount }}</span>
+                {% endif %}
                 <label class="form-label">Balance amount</label>
-                <input type="text" class="form-control" name="balance_amount" required>
+                <input type="text" class="form-control" name="balance_amount" required value="{{ devise.balance_amount }}">
             </div>
           </div>
           <!-- Notes -->

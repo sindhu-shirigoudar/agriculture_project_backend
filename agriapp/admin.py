@@ -5,3 +5,5 @@ from . import models
 
 admin.site.register(models.ContactDetails)
 admin.site.register(models.Devise)
+admin.site.register(models.DeviseApis)
+admin.site.register(models.DeviseLocation)

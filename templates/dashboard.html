@@ -7,7 +7,7 @@
     <!-- navbar -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" style="height: 30px;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{% url 'dsahboard' %}">
                 <h3 class="my-heading" style="font-size: 15px;">ArkaShine Innovations Pvt Ltd</h3>
             </a>
                 <ul class="navbar-nav ml-auto">
@@ -25,14 +25,9 @@
     </nav>
   <!-- end navbar -->
     <div class="container mt-5">
-        <button class="col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12 m-1 rounded bg-dark text-white" id="dashboard-buttons">
-           <a href="{% url 'device-list' %}" class="text-white">Devises</a> 
-        </button>
-        <button class="col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12 m-1 rounded bg-dark text-white" id="dashboard-buttons">
-           <a href="{% url 'map' %}" class="text-white">Map</a> 
-        </button>
-        <button class="col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12 m-1 rounded bg-dark text-white" id="dashboard-buttons"  >
-           <a href="" class="text-white">DDevices</a> 
-        </button>
+        <button class="col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12 m-1 rounded bg-dark text-white float-right" id="dashboard-buttons" onclick="window.location={% url 'device-list' %}">Devises</button>
+        <button class="col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12 m-1 rounded bg-dark text-white" id="dashboard-buttons" onclick="window.location={% url 'map' %}">Map</button>
+        <button class="col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12 m-1 rounded bg-dark text-white" id="dashboard-buttons" onclick="window.location={% url 'notifications' %}">Notifications</button>
+        <button class="col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12 m-1 rounded bg-dark text-white  float-right" id="dashboard-buttons" onclick="window.location={% url 'add-devise' %}">Add devise</button>
     </div>
 </body>

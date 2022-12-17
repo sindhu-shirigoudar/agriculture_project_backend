@@ -85,9 +85,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
 </head>
     <!-- navbar -->
+    <h4 class="bg-success" style="width: 100%;">{{message}}</h4>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" style="height: 30px;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{% url 'dsahboard' %}">
                 <h3 class="my-heading" style="font-size: 15px;">ArkaShine Innovations Pvt Ltd</h3>
             </a>
                 <ul class="navbar-nav ml-auto">
@@ -157,10 +158,14 @@
                             <tr>
                                 <th scope="col" class="ps-4" style="width: 50px;"></th>
                                 <th scope="col">Name of individual or organization</th>
-                                <th scope="col">Position</th>
+                                <th scope="col">Devise id</th>
+                                <th scope="col">Serial no</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Usage</th>
-                                <th scope="col" style="width: 200px;">Action</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Purchase date</th>
+                                <th scope="col">Amount paid</th>
+                                <th scope="col">Balance amount</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -168,18 +173,25 @@
                                 <tr>
                                     <th scope="row" class="ps-4"></th>
                                     <td><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="avatar-sm rounded-circle me-2" /><a href="#" class="text-body">{{ devise.name }}</a></td>
-                                    <td><span class="badge badge-soft-success mb-0">Full Stack Developer</span></td>
-                                    <!-- <td><span class="badge badge-soft-danger mb-0">UI/UX Designer</span></td> -->
+                                    <td>{{ devise.devise_id }}</td>
+                                    <td>{{ devise.setial_no }}</td>
                                     <td>{{ devise.email }}</td>
-                                    <td>125</td>
+                                    <td>{{ devise.phone }}</td>
+                                    <td>{{ devise.purchase_date }}</td>
+                                    <td>{{ devise.amount_paid }}</td>
+                                    <td>{{ devise.balance_amount }}</td>
+                                    <!-- <td><span class="badge badge-soft-success mb-0">Full Stack Developer</span></td> -->
+                                    <!-- <td><span class="badge badge-soft-danger mb-0">UI/UX Designer</span></td> -->
                                     <td>
                                         <ul class="list-inline mb-0">
                                             <li class="list-inline-item">
-                                                <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
+                                                <a href="{% url 'device-details' devise.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-detail font-size-18"></i></a>
+                                                <a href="{% url 'edit-devise' devise.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
                                             </li>
-                                            <li class="list-inline-item">
+                                            <!-- delete icon -->
+                                            <!-- <li class="list-inline-item">
                                                 <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" class="px-2 text-danger"><i class="bx bx-trash-alt font-size-18"></i></a>
-                                            </li>
+                                            </li> -->
                                             <!-- <li class="list-inline-item dropdown">
                                                 <a class="text-muted dropdown-toggle font-size-18 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"><i class="bx bx-dots-vertical-rounded"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">

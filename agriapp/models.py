@@ -24,7 +24,7 @@ class Devise(models.Model):
     address2      = models.CharField(max_length=255)
     purchase_date = models.DateField()
     time_of_sale  = models.TimeField()
-    warrenty      = models.DateField(max_length=255)
+    warrenty      = models.DateField()
     amount_paid   = models.BigIntegerField()
     balance_amount= models.BigIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -58,7 +58,7 @@ class DeviseApis(models.Model):
     created_at            = models.DateTimeField(auto_now_add=True)
 
 
-class DeciseLocation(models.Model):
+class DeviseLocation(models.Model):
     decise     = models.ForeignKey(to='Devise', on_delete=models.CASCADE)
     api_call   = models.ForeignKey(to='DeviseApis', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
