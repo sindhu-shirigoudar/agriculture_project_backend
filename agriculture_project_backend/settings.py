@@ -78,11 +78,22 @@ WSGI_APPLICATION = 'agriculture_project_backend.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+
+    'default' : {                                                                                                                
+      'ENGINE': 'django.db.backends.mysql',                                                                                    
+    'NAME': 'Arkashine',                                                                                                     
+    'HOST': 'database1.cvjdvidbqr06.us-east-1.rds.amazonaws.com',                                                            
+      'USER': 'admin',                                                                                                         
+       'PASSWORD': 'Arkashine123',                                                                                              
+       'PORT': '3306',                                                                                                          
+   }
 }
+
+
 
 # fro authentication
 REST_FRAMEWORK = {
