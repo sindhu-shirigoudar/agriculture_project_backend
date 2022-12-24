@@ -109,7 +109,7 @@
     <div class="row align-items-center">
         <div class="col-md-6">
             <div class="mb-3">
-                <h5 class="card-title">Device List <span class="text-muted fw-normal ms-2">({{devise_count}})</span></h5>
+                <h5 class="card-title">Devise "{{devise.name}}" APIs <span class="text-muted fw-normal ms-2">({{api_count}})</span></h5> <a href="{% url 'device-details' devise.pk %}">Back</a>
             </div>
         </div>
         <!-- <div class="col-md-6">
@@ -157,47 +157,28 @@
                         <thead>
                             <tr>
                                 <th scope="col" class="ps-4" style="width: 50px;"></th>
-                                <th scope="col">Name of individual or organization</th>
-                                <th scope="col">Devise id</th>
-                                <th scope="col">Serial no</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Phone</th>
-                                <!-- <th scope="col">Purchase date</th> -->
-                                <th scope="col">Amount paid</th>
-                                <th scope="col">Balance amount</th>
+                                <th scope="col">Area name</th>
+                                <th scope="col">Nitrogen</th>
+                                <th scope="col">Phosphorous</th>
+                                <th scope="col">Calcium</th>
+                                <th scope="col">Request at</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for devise in devises %}
+                            {% for api in apis %}
                                 <tr>
                                     <th scope="row" class="ps-4"></th>
-                                    <td><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="avatar-sm rounded-circle me-2" /><a href="#" class="text-body">{{ devise.name }}</a></td>
-                                    <td>{{ devise.devise_id }}</td>
-                                    <td>{{ devise.setial_no }}</td>
-                                    <td>{{ devise.email }}</td>
-                                    <td>{{ devise.phone }}</td>
-                                    <!-- <td>{{ devise.purchase_date }}</td> -->
-                                    <td>{{ devise.amount_paid }}</td>
-                                    <td>{{ devise.balance_amount }}</td>
-                                    <!-- <td><span class="badge badge-soft-success mb-0">Full Stack Developer</span></td> -->
-                                    <!-- <td><span class="badge badge-soft-danger mb-0">UI/UX Designer</span></td> -->
+                                    <td>{{ api.area_name }}</td>
+                                    <td>{{ api.nitrogen }}</td>
+                                    <td>{{ api.phosphorous }}</td>
+                                    <td>{{ api.calcium }}</td>
+                                    <td>{{ api.created_at }}</td>
                                     <td>
                                         <ul class="list-inline mb-0">
                                             <li class="list-inline-item">
-                                                <a href="{% url 'device-details' devise.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-detail font-size-18"></i></a>
-                                                <a href="{% url 'edit-devise' devise.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
+                                                <a href="{% url 'api-overview' api.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
                                             </li>
-                                            <!-- delete icon -->
-                                            <!-- <li class="list-inline-item">
-                                                <a href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" class="px-2 text-danger"><i class="bx bx-trash-alt font-size-18"></i></a>
-                                            </li> -->
-                                            <!-- <li class="list-inline-item dropdown">
-                                                <a class="text-muted dropdown-toggle font-size-18 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"><i class="bx bx-dots-vertical-rounded"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a>
-                                                </div>
-                                            </li> -->
                                         </ul>
                                     </td>
                                 </tr>   

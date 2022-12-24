@@ -5,9 +5,11 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 
 from .forms import ContactForm, DeviseForm
-from .models import ContactDetails, Devise
+from .models import ContactDetails, Devise, DeviseApis
 
 from . import UserFuncrtions
+from django.views.generic import UpdateView
+from django.urls import reverse
 
 
 # Create your views here.
@@ -135,10 +137,47 @@ def devise_list(request, **kwargs):
     return render(request, template_name = template_name, context = context)
 
 @login_required(login_url='/')    
+def api_list(request, **kwargs):
+    devise = Devise.objects.get(pk = kwargs['pk'])
+    apis = DeviseApis.objects.filter(device__pk=kwargs['pk'])
+    template_name     = 'api_list.html'
+    context = {
+        'api_count'   : len(apis),
+        'apis'        : apis,
+        'devise' : devise,
+    }
+    return render(request, template_name = template_name, context = context)
+
+@login_required(login_url='/')    
 def devise_details(request, **kwargs):
     devise  = Devise.objects.get(pk = kwargs['pk'])
+    apis    = DeviseApis.objects.filter(device=devise)
     template_name = "devise_details1.html"
     context       = {
         'devise' : devise,
+        'api_usage' : len(apis),
     }
     return render(request, template_name = template_name, context=context)
+
+@login_required(login_url='/')    
+def api_overview(request, **kwargs):
+    api = DeviseApis.objects.get(pk=kwargs['pk'])
+    template_name = "api_details.html"
+    context = {
+        'api' : api,
+        'devise_name' : api.device.name,
+    }
+    return render(request, template_name = template_name, context=context)
+
+class UpdateApi(UpdateView):
+    model = DeviseApis
+    fields = '__all__'
+    template_name = 'updaet-api.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(UpdateApi, self).get_context_data(**kwargs)
+        pk = self.kwargs['pk']
+        return context
+
+    def get_success_url(self):
+        return reverse('api-overview', kwargs={'pk': self.kwargs['pk']})

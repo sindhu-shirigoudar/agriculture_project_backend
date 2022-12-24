@@ -27,7 +27,7 @@ class Devise(models.Model):
     warrenty      = models.DateField()
     amount_paid   = models.BigIntegerField()
     balance_amount= models.BigIntegerField(default=0)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at    = models.DateTimeField(auto_now_add=True)
 
 
     def __str__(self):
@@ -59,8 +59,11 @@ class DeviseApis(models.Model):
 
 
 class DeviseLocation(models.Model):
-    decise     = models.ForeignKey(to='Devise', on_delete=models.CASCADE)
+    devise     = models.ForeignKey(to='Devise', on_delete=models.CASCADE)
     api_call   = models.ForeignKey(to='DeviseApis', on_delete=models.CASCADE)
+    latitude   = models.BigIntegerField(default=0)
+    longitude  = models.BigIntegerField(default=0)
+    status     = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
 
