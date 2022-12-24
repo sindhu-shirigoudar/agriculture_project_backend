@@ -38,7 +38,7 @@ def login(request):
         user = auth.authenticate(username = username, password = password)
         if user is not None:
             auth.login(request,user)
-            return redirect('/map/')
+            return redirect('/dashboard.html/')
         else:
             template_name = 'login1.html'
             context       =  {'error' : 'Invalid username or password'}
@@ -48,12 +48,10 @@ def logout(request):
     auth.logout(request)
     return redirect('/')
 
-@login_required(login_url='/')    
 def users(request):
     template_name = "users.html"
     return render(request, template_name)
 
-@login_required(login_url='/')    
 def add_devise(request):
     context = {'message' : ''}
     if request.method == 'GET':
@@ -89,7 +87,6 @@ def add_devise(request):
             return render(request, 'add_devise.html', {'devise' : default_values, 'field_errors' : field_errors})
     return render(request, template_name = template_name,)
 
-@login_required(login_url='/')    
 def edit_devise(request, **kwargs):
     context = {'message' : ''}
     devise  = Devise.objects.get(pk = kwargs['pk'])
@@ -110,7 +107,6 @@ def edit_devise(request, **kwargs):
             return render(request, 'add_devise.html', {'errors': form.errors, 'devise' : devise, })
     return render(request, template_name = template_name, context=context)
 
-@login_required(login_url='/')    
 def notifications(request, **kwargs):
     if (kwargs):
        data = ContactDetails.objects.get(pk = kwargs['pk'])
@@ -125,7 +121,6 @@ def notifications(request, **kwargs):
     }
     return render(request, template_name = template_name, context = context)
 
-@login_required(login_url='/')    
 def devise_list(request, **kwargs):
     devises = Devise.objects.all()
     template_name     = 'device_list.html'
@@ -136,7 +131,6 @@ def devise_list(request, **kwargs):
     }
     return render(request, template_name = template_name, context = context)
 
-@login_required(login_url='/')    
 def api_list(request, **kwargs):
     devise = Devise.objects.get(pk = kwargs['pk'])
     apis = DeviseApis.objects.filter(device__pk=kwargs['pk'])
@@ -148,7 +142,6 @@ def api_list(request, **kwargs):
     }
     return render(request, template_name = template_name, context = context)
 
-@login_required(login_url='/')    
 def devise_details(request, **kwargs):
     devise  = Devise.objects.get(pk = kwargs['pk'])
     apis    = DeviseApis.objects.filter(device=devise)
@@ -159,7 +152,6 @@ def devise_details(request, **kwargs):
     }
     return render(request, template_name = template_name, context=context)
 
-@login_required(login_url='/')    
 def api_overview(request, **kwargs):
     api = DeviseApis.objects.get(pk=kwargs['pk'])
     template_name = "api_details.html"
