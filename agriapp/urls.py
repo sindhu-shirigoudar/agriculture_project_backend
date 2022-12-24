@@ -13,7 +13,7 @@ urlpatterns = [
     path('acess_denied/', TemplateView.as_view(template_name="acess_denied.html"), name = "acess_denied"),
     path('register/', TemplateView.as_view(template_name="register.html"), name = "register"),
     path('add-devise/', login_required(v.add_devise), name = "add-devise"),
-    path('edit-devise/<int:pk>/', (login_requiredv.edit_devise), name = "edit-devise"),
+    path('edit-devise/<int:pk>/', login_required(v.edit_devise), name = "edit-devise"),
     path('device-list/', login_required(v.devise_list), name = "device-list"),
     path('device-details/<int:pk>/', login_required(v.devise_details), name = "device-details"),
     path('api-overview/<int:pk>/', login_required(v.api_overview), name = "api-overview"),
