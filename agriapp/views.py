@@ -146,8 +146,15 @@ def devise_list(request, **kwargs):
     return render(request, template_name = template_name, context = context)
 
 def api_list(request, **kwargs):
+    n, p, k, name = '', '', '', ''
+    if request.method == 'POST':
+        # n = request.POST['n']
+        # p = request.POST['p']
+        # k = request.POST['k']
+        name = request.POST['area_name']
+        
     devise = Devise.objects.get(pk = kwargs['pk'])
-    apis = DeviseApis.objects.filter(device__pk=kwargs['pk'])
+    apis = DeviseApis.objects.filter(device__pk=kwargs['pk'], area_name__contains=name)
     template_name     = 'api_list.html'
     context = {
         'api_count'   : len(apis),

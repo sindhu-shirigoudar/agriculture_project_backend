@@ -110,18 +110,34 @@
      {% if messages %}
      {% for message in messages %}
          <div class="alert alert-dismissible alert-success">
-         <button type="button" class="close" data-dismiss="alert">
+         <!-- <button type="button" class="close" data-dismiss="alert">
          ×
-         </button>
+         </button> -->
          <strong>{{message}}</strong>
          </div>
      {% endfor %}
      {% endif %}
     <div class="row align-items-center">
-        <div class="col-md-6">
-            <div class="mb-3">
-                <h5 class="card-title">Devise "{{devise.name}}" APIs <span class="text-muted fw-normal ms-2">({{api_count}})</span></h5> <a href="{% url 'device-details' devise.pk %}">Back</a>
-            </div>
+        <div class="" style="width: 100%;">
+                <h5 class="card-title">Devise "{{devise.name}}" APIs <span class="text-muted fw-normal ms-2">({{api_count}})</span></h5> 
+                <form class="" method="POST" style="margin-left: 33%;"> {% csrf_token %}
+                    <label>Area name</label>
+                    <input type="text" name="area_name">
+                    <!-- <label>Nitrogen</label>
+                    <input type="number" name="n">
+                    <label>Phosphorous</label>
+                    <input type="number" name="p">
+                    <label>Potassium</label>
+                    <input type="number" name="k"> -->
+                    <button class="btn btn-primary btn-sm btn-icon-text">Filter</button>
+                <a class="btn btn-primary btn-sm btn-icon-text" href="{% url 'device-details' devise.pk %}">Back</a>
+
+                </form>
+                <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+                <script>
+                    $('.select2').select2();
+                </script>
         </div>
         <!-- <div class="col-md-6">
             <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
@@ -171,7 +187,7 @@
                                 <th scope="col">Area name</th>
                                 <th scope="col">Nitrogen</th>
                                 <th scope="col">Phosphorous</th>
-                                <th scope="col">Calcium</th>
+                                <th scope="col">Potassium</th>
                                 <th scope="col">Request at</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -183,13 +199,13 @@
                                     <td>{{ api.area_name }}</td>
                                     <td>{{ api.nitrogen }}</td>
                                     <td>{{ api.phosphorous }}</td>
-                                    <td>{{ api.calcium }}</td>
+                                    <td>{{ api.potassium }}</td>
                                     <td>{{ api.created_at }}</td>
                                     <td>
                                         <ul class="list-inline mb-0">
                                             <li class="list-inline-item">
                                                 <a href="{% url 'api-overview' api.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-detail font-size-18"></i></a>
-                                                <a href="{% url 'api-edit' api.device.id %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
+                                                <a href="{% url 'api-edit' api.id %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
                                             </li>
                                         </ul>
                                     </td>
