@@ -32,15 +32,18 @@
                 <!-- </div> -->
             </div>
         </nav>
-        {% if message %} 
-        <script>
-           $(document).ready(function(){
-           alert({{message}});
-           console.log({{message}});
-            });
-        </script>
-        {% endif %}
         <div class="tophead" >
+            <!-- success message -->
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-dismissible alert-success">
+                <!-- <button type="button" class="close" data-dismiss="alert">
+                ×
+                </button> -->
+                <strong>{{message}}</strong>
+                </div>
+            {% endfor %}
+            {% endif %}
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-7 ">
@@ -49,7 +52,7 @@
                             Compact portable soil testing machines that are easy to carry, easy to operate, easy to refill and reuse, provide results on palm, requiring less skilled labor in providing timely soil test results as fertilizer and crop recommend to farmers through use of technology towards a greener footprint for climate change.
                         </h3>
 						<div class="top-btn-block wow fadeInUp data-wow-duration=2.5s">
-							<a href="javascript:void(0)" class="btn-explore ">View details</a>
+							<!-- <a href="javascript:void(0)" class="btn-explore ">View details</a> -->
 							<!-- <a href="javascript:void(0)" class="btn-account ">Button</a> -->
 						</div>
                     </div>
@@ -78,7 +81,7 @@
                         </span>
                     </p>
                     <div class="row">
-                        <div class="col-md-12 col-lg-12 wow bounceInUp ml-5" data-wow-duration="1.4s">
+                        <div class="col-md-12 col-lg-12 wow bounceInUp ml-5 mb-5" data-wow-duration="1.4s">
                             <video autoplay muted loop id="myVideo" style="height:550px">
                                 <source src="{%  static '/home/autoplay.mp4'%}" type="video/mp4">
                                 Your browser does not support HTML5 video.
@@ -105,38 +108,25 @@
                               }
                             }
                             </script>
-                        <!-- <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-duration="1.4s">
-                            <div class="overview-box mx-auto">
-                                <div class="features-icons-icon d-flex">
-                                    <i class="fa fa-css3 fa-5x css3 m-auto"></i>
-                                </div>
-                                <h5>CSS 3</h5>
-                                <p class=" mb-0">Lorem ipsum dolor sit amet consectetur adipiscing elit proin leo ornare!</p>
-                            </div>
-                        </div> -->
-                       <!-- <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-duration="1.4s">
-                            <div class="overview-box mx-auto">
-                                <div class="features-icons-icon d-flex">
-                                    <i class="fa fa-android fa-5x android m-auto"></i>
-                                </div>
-                                <h5>Android</h5>
-                                <p class=" mb-0">Lorem ipsum dolor sit amet consectetur adipiscing elit proin leo ornare!</p>
-                            </div>
-                        </div> -->
-                       <!-- <div class="col-md-6 col-lg-3 wow bounceInUp" data-wow-duration="1.4s">
-                            <div class="overview-box mx-auto">
-                                <div class="features-icons-icon d-flex">
-                                    <i class="fa fa-drupal fa-5x drupal m-auto"></i>
-                                </div>
-                                <h5>Drupal</h5>
-                                <p class=" mb-0">Lorem ipsum dolor sit amet consectetur adipiscing elit proin leo ornare!</p>
-                            </div>
-                        </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </section>
-        <!-- <section class="galeria">
+
+        <!-- partners -->
+
+        <section class="overview-wrap" style="float: left;">
+            <h2 class="title-overview wow fadeInUp">Our Partners</h2>
+            <div class="col-md-12 col-lg-12 wow bounceInUp">
+                <img class="col-md-6 col-lg-3 wow bounceInUp" src="{% static 'dashboard/p1.PNG' %}" style="width: 33.3%;float: left;">
+                <img class="col-md-6 col-lg-3 wow bounceInUp" src="{% static 'dashboard/p2.PNG' %}" style="width: 33.3%;float: left;">
+                <img class="col-md-6 col-lg-3 wow bounceInUp" src="{% static 'dashboard/p3.PNG' %}" style="width: 33.3%;float: left;">
+                <img class="col-md-6 col-lg-3 wow bounceInUp" src="{% static 'dashboard/p4.PNG' %}" >
+            </div>
+        </section>
+
+        
+        <section class="galeria">
             <div class="sesgoarriba"></div>
             <div class="imagenes">
                 <img src="https://images.pexels.com/photos/938965/pexels-photo-938965.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="" class="img-fluid">
@@ -145,73 +135,7 @@
                     <div></div>
                 </div>
             </div>
-           
             <div class="sesgoabajo"></div>
-        </section> -->
-		
-		
-
-       
-
-        <!--latest post-->
-       <section class="blog-wrap" id="blog">            
-            <div class="container-fluid">
-                 <h2 class="title-blog wow fadeInUp">People at ArkaShine Innovations Pvt Ltd</h2>
-                    <!-- <p class="subtitle-blog wow fadeInUp">
-                        People at ArkaShine Innovations Pvt Ltd
-                    </p> -->
-                <div class="row">
-                    <div class="col-md-4 wow bounceInUp" data-wow-duration="1.4s">
-                        <div class="card"  style="height: 470px;">
-                            <figure class="text-center">
-                                <img src="{% static '/' %}" class="img-fluid">
-                            </figure>
-                            <div class="card-body">
-                                <h5 class="card-title">Sudha Ramesh Karbari (Founder & CEO)</h5>
-                                <p class="card-text">
-                                    M Tech (PhD) <br>
-                                    Role : Head                                    
-                                </p>
-                                <a href="#" class="">Read more</a>
-                              </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 wow bounceInUp" data-wow-duration="1.4s">
-                        <div class="card"  style="height: 470px;">
-                            <figure class="text-center">
-                                <img src="https://images.pexels.com/photos/929831/pexels-photo-929831.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" class="img-fluid">
-                            </figure>
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Mr. Ramesh Karbari (CTO)
-                                </h5>
-                                <p class="card-text">
-                                    BE- Automobile <br>
-                                    Role : Product development <br>
-                                    stage analysis 
-
-                                </p>
-                                <a href="#" class="">Read more</a>
-                              </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 wow bounceInUp" data-wow-duration="1.4s">
-                        <div class="card"  style="height: 470px;">
-                            <figure class="text-center">
-                                <img src="https://images.pexels.com/photos/938965/pexels-photo-938965.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" class="img-fluid">
-                            </figure>
-                            <div class="card-body">
-                                <h5 class="card-title">Dr. G  G  Kadalli (Soil Science and Agri Chemistry)</h5>
-                                <p class="card-text">
-                                    UAS University of Agriculture Sciences. <br>
-                                    Mentor
-                                </p>
-                                <a href="#" class="">Read more</a>
-                              </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
 
         <section class="cta contact-wrap" id="contact">

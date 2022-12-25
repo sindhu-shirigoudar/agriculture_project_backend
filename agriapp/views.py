@@ -23,6 +23,7 @@ def home(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request,"Contact details added successfully")
         else:
             return render(request, 'home1.html', {'errors': form.errors})
         

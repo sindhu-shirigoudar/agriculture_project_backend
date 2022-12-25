@@ -11,7 +11,6 @@
 
 <!------ Include the above in your HEAD tag ---------->
  <!-- navbar -->
- <h4 class="bg-success" style="width: 100%;">{{message}}</h4>
  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" style="height: 30px;">
      <div class="container-fluid">
          <a class="navbar-brand" href="{% url 'dsahboard' %}">
@@ -168,9 +167,9 @@
         var myLineChart = new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: ["Nitrogen", "Phosphorous", "Calcium"],
+                labels: ["Nitrogen", "Phosphorous", "Potassium"],
                 datasets: [{
-                    data: [{{api.nitrogen}}, {{api.phosphorous}}, {{api.calcium}}],
+                    data: [{{api.nitrogen}}, {{api.phosphorous}}, {{api.potassium}}],
                     backgroundColor: ["rgba(255, 0, 0, 0.5)", "rgba(100, 255, 0, 0.5)", "rgba(200, 50, 255, 0.5)" ]
                 }]
             },
