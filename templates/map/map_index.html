@@ -160,17 +160,34 @@
   <!-- end navbar -->
 
   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script>
+    var directionsDisplay;
+    var directionsService = new google.maps.DirectionsService();
+    var map;
+    function initialize() {
+        directionsDisplay = new google.maps.DirectionsRenderer();
+        var india      = new google.maps.LatLng(15.3173, 75.7139);
+        var mapOptions = { zoom:7, mapTypeId: google.maps.MapTypeId.ROADMAP, center: india }
+        map            = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+        directionsDisplay.setMap(map);
+    }
+    $(document).ready(function(e) { initialize() });
+    </script>
+    <div id="map_canvas" style="height: 500px; width:90%; margin: 5%;"></div>
+  
   <!-- map -->
-  <div class="container" style="margin-top: 100px;">
+  <!-- <div class="container">
     <div class="row ">
         <div class="col md-10 offset-md-1">
            {{ map | safe }}
         </div>
     </div>
-  </div>
+  </div> -->
   <!-- end map -->
 <!-- pichart -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
 <script>
     $(document).ready(function() {
         var ctx = $("#chart-line");
@@ -214,10 +231,10 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- end pi chart -->
 <!-- bargraph -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
 <script>
     $(document).ready(function() {
         var ctx = $("#chart-line-bar");
@@ -278,5 +295,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- end bargraph -->

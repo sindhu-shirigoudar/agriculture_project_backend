@@ -11,7 +11,7 @@ from . import UserFuncrtions
 from django.views.generic import UpdateView
 from django.urls import reverse
 from django.contrib import messages #import messages
-
+from datetime import datetime
 
 # Create your views here.
 
@@ -93,6 +93,8 @@ def add_devise(request):
 def edit_devise(request, **kwargs):
     context = {'message' : ''}
     devise  = Devise.objects.get(pk = kwargs['pk'])
+    devise.purchase_date = datetime.strptime(str(devise.purchase_date), '%Y-%m-%d')
+    devise.warrenty = datetime.strptime(str(devise.warrenty), '%Y-%m-%d')
     if request.method == 'GET':
         template_name = "add_devise.html"
         context       = {
