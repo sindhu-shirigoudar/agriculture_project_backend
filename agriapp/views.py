@@ -10,6 +10,7 @@ from .models import ContactDetails, Devise, DeviseApis
 from . import UserFuncrtions
 from django.views.generic import UpdateView
 from django.urls import reverse
+from django.contrib import messages #import messages
 
 
 # Create your views here.
@@ -26,7 +27,7 @@ def home(request):
             return render(request, 'home1.html', {'errors': form.errors})
         
         template_name = 'home1.html'
-        return render(request, template_name, {'message' : 'Contact details ha been added successfully'})
+        return render(request, template_name, {'message' : 'Contact details has been added successfully'})
 
 def login(request):
     context = dict()
@@ -61,8 +62,9 @@ def add_devise(request):
         if form.is_valid():
             UserFuncrtions.create_user(request.POST['devise_id'], request.POST['email'])
             form.save()
-            template_name = 'dsahboard.html'
-            context = {'message' : 'Devise added successfully'}
+            template_name = 'device_list.html'
+            messages.success(request,"Devise added successfully")
+            return redirect("/device-list/")
         else:
             errors  = form.errors
             field_errors = dict()
@@ -85,12 +87,11 @@ def add_devise(request):
                 'phone'          : request.POST['phone'],
             }
             return render(request, 'add_devise.html', {'devise' : default_values, 'field_errors' : field_errors})
-    return render(request, template_name = template_name,)
+    return render(request, template_name = template_name, context=context)
 
 def edit_devise(request, **kwargs):
     context = {'message' : ''}
     devise  = Devise.objects.get(pk = kwargs['pk'])
-    print(devise.time_of_sale,devise.purchase_date,'-----')
     if request.method == 'GET':
         template_name = "add_devise.html"
         context       = {
@@ -100,8 +101,8 @@ def edit_devise(request, **kwargs):
         form = DeviseForm(request.POST or None, instance=devise)
         if form.is_valid():
             form.save()
-            template_name = 'dashboard.html'
-            context = {'message' : 'Devise updated successfully'}
+            messages.success(request,"Devise updated successfully")
+            return redirect("/device-list/")
         else:
             print(request.POST)
             return render(request, 'add_devise.html', {'errors': form.errors, 'devise' : devise, })
@@ -169,6 +170,7 @@ class UpdateApi(UpdateView):
     def get_context_data(self, **kwargs):
         context = super(UpdateApi, self).get_context_data(**kwargs)
         pk = self.kwargs['pk']
+        messages.success(self.request, "API updated successfully")
         return context
 
     def get_success_url(self):

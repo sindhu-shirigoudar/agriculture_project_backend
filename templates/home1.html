@@ -32,6 +32,14 @@
                 <!-- </div> -->
             </div>
         </nav>
+        {% if message %} 
+        <script>
+           $(document).ready(function(){
+           alert({{message}});
+           console.log({{message}});
+            });
+        </script>
+        {% endif %}
         <div class="tophead" >
             <div class="container-fluid">
                 <div class="row">
