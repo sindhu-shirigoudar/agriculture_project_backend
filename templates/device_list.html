@@ -109,18 +109,32 @@
     {% if messages %}
     {% for message in messages %}
         <div class="alert alert-dismissible alert-success">
-        <button type="button" class="close" data-dismiss="alert">
+        <!-- <button type="button" class="close" data-dismiss="alert">
         ×
-        </button>
+        </button> -->
         <strong>{{message}}</strong>
         </div>
     {% endfor %}
     {% endif %}
     <div class="row align-items-center">
-        <div class="col-md-6">
-            <div class="mb-3">
-                <h5 class="card-title">Device List <span class="text-muted fw-normal ms-2">({{devise_count}})</span></h5>
-            </div>
+        <div class="">
+                <h5 class="" style="float: left;margin-right: 300px;">Device List <span class="text-muted fw-normal ms-2">({{devise_count}})</span></h5>
+                    <form class="" method="POST" style="float: right;"> {% csrf_token %}
+                        <label>Search devise</label>
+                        <select class="form-control select2" name="pk">
+                            <option value=""> All</option>
+                            {% for devise in devices %}
+                                <option value="{{devise.pk}}">{{devise.name}}</option> 
+                            {% endfor %}
+                        </select>
+                        <button class="btn btn-primary btn-sm btn-icon-text mt-1">Filter</button>
+                    </form>
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+            <script>
+                $('.select2').select2();
+            </script>
+                    
         </div>
         <!-- <div class="col-md-6">
             <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">

@@ -126,12 +126,22 @@ def notifications(request, **kwargs):
     return render(request, template_name = template_name, context = context)
 
 def devise_list(request, **kwargs):
-    devises = Devise.objects.all()
+    if request.method == 'POST':
+        pk = request.POST['pk']
+        if pk:
+            devises = Devise.objects.filter(pk=request.POST['pk'])
+        else :
+            devises = Devise.objects.all()
+    else:
+        devises = Devise.objects.all()
+
+    devices = Devise.objects.all()
     template_name     = 'device_list.html'
     
     context = {
         'devise_count' :len(devises),
         'devises'      : devises,
+        'devices'      : devices,
     }
     return render(request, template_name = template_name, context = context)
 
