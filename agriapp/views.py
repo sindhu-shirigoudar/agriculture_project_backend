@@ -26,7 +26,7 @@ def home(request):
             return render(request, 'home1.html', {'errors': form.errors})
         
         template_name = 'home1.html'
-        return render(request, template_name)
+        return render(request, template_name, {'message' : 'Contact details ha been added successfully'})
 
 def login(request):
     context = dict()
@@ -38,7 +38,7 @@ def login(request):
         user = auth.authenticate(username = username, password = password)
         if user is not None:
             auth.login(request,user)
-            return redirect('/dashboard.html/')
+            return redirect('/dsahboard/')
         else:
             template_name = 'login1.html'
             context       =  {'error' : 'Invalid username or password'}
