@@ -37,6 +37,13 @@ from agriapp.models import DeviseLocation, Devise, DeviseApis
 
 @login_required(login_url='/login1/')    
 def map_view(request, **kwargs):
+    devises = DeviseLocation.objects.all()
+    locations = []
+    for devise in devises:
+        locations.append([devise.devise.name, devise.latitude, devise.longitude])
     
-    return render(request, 'map/map_index.html')
+    context = {
+        'devises' : devises
+    }
+    return render(request, 'map/map_index.html', context=context)
 

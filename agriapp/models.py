@@ -25,8 +25,8 @@ class Devise(models.Model):
     purchase_date = models.DateField()
     time_of_sale  = models.TimeField()
     warrenty      = models.DateField()
-    amount_paid   = models.BigIntegerField()
-    balance_amount= models.BigIntegerField(default=0)
+    amount_paid   = models.FloatField()
+    balance_amount= models.FloatField(default=0)
     created_at    = models.DateTimeField(auto_now_add=True)
 
 
@@ -60,9 +60,8 @@ class DeviseApis(models.Model):
 
 class DeviseLocation(models.Model):
     devise     = models.ForeignKey(to='Devise', on_delete=models.CASCADE)
-    api_call   = models.ForeignKey(to='DeviseApis', on_delete=models.CASCADE)
-    latitude   = models.BigIntegerField(default=0)
-    longitude  = models.BigIntegerField(default=0)
+    latitude   = models.FloatField(default=0)
+    longitude  = models.FloatField(default=0)
     status     = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
