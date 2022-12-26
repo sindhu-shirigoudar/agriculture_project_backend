@@ -158,19 +158,19 @@
         </div>
     </nav>
   <!-- end navbar -->
-<input type="hidden" name="" id="locs" value="{% for devise in devises %}-{{devise.devise.name}},{{devise.latitude}},{{devise.longitude}}{% endfor %}">
+<input type="hidden" name="" id="locs" value="{% for devise in devises %}-{{devise.devise.name}},{{devise.latitude}},{{devise.longitude}},{{devise.devise.pk}}{% endfor %}">
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script>
-    var directionsDisplay;
-    var directionsService = new google.maps.DirectionsService();
+    // var directionsDisplay;
+    // var directionsService = new google.maps.DirectionsService();
     var map;
     function initialize() {
         directionsDisplay = new google.maps.DirectionsRenderer();
         var india      = new google.maps.LatLng(15.3173, 75.7139);
-        var mapOptions = { zoom:5, mapTypeId: google.maps.MapTypeId.ROADMAP, center: india }
-        map            = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+        var mapOptions = { zoom:7, mapTypeId: google.maps.MapTypeId.HYBRID , center: india } // ROADMAP , HYBRID , SATELLITE , TERRAIN 
+        map            = new google.maps.Map(document.getElementById("map_canvas"), mapOptions); // 
         directionsDisplay.setMap(map);
 
         var i;
@@ -179,17 +179,25 @@
         var loc ={} ;
         for (i = 0; i < locations.length; i++) {
             var t = locations[i].split(',');
-            var name = t[0], lat = parseFloat(t[1]), long = parseFloat(t[2]);
+            var name = t[0], lat = parseFloat(t[1]), long = parseFloat(t[2]), pk = t[3];
 
             if (name.length) {
                 console.log(name, lat, long);
                 var mkr =  new google.maps.Marker({
-                    position: { lat: lat, lng: long},
+                    position: {lat: lat, lng: long},
                     map: map,
                 });
                 var inf = new google.maps.InfoWindow({
-                    content: "<p>"+name + ':' + mkr.getPosition() + "</p>",
+                    content: "<a href='/device-details/"+pk+"'>"+name + ':' + mkr.getPosition() + "</a>",
                 });
+
+                // mkr.addListener("click", () => {
+                //     inf.open({
+                //         anchor: mkr,
+                //         map,
+                //     });
+                // });
+                
                 inf.open(map, mkr);
             }  
         }
@@ -218,9 +226,7 @@
 <script>
     $('.select2').select2();
 </script>
-    
-
-    <div id="map_canvas" style="height: 500px; width:90%; margin: 5%;"></div>
+    <div id="map_canvas" style="height: 500px; width:90%; margin: 5%;float:left"></div>
   
   <!-- map -->
   <!-- <div class="container">
