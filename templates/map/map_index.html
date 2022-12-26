@@ -166,12 +166,17 @@
     // var directionsDisplay;
     // var directionsService = new google.maps.DirectionsService();
     var map;
+    var map1;
     function initialize() {
         directionsDisplay = new google.maps.DirectionsRenderer();
+        directionsDisplay1 = new google.maps.DirectionsRenderer();
         var india      = new google.maps.LatLng(15.3173, 75.7139);
         var mapOptions = { zoom:7, mapTypeId: google.maps.MapTypeId.HYBRID , center: india } // ROADMAP , HYBRID , SATELLITE , TERRAIN 
+        var mapOptions1 = { zoom:7, mapTypeId: google.maps.MapTypeId.ROADMAP , center: india } // ROADMAP , HYBRID , SATELLITE , TERRAIN 
         map            = new google.maps.Map(document.getElementById("map_canvas"), mapOptions); // 
+        map1            = new google.maps.Map(document.getElementById("map_canvas1"), mapOptions1); // 
         directionsDisplay.setMap(map);
+        directionsDisplay1.setMap(map1);
 
         var i;
         locations = document.getElementById("locs").value;
@@ -187,8 +192,16 @@
                     position: {lat: lat, lng: long},
                     map: map,
                 });
+                var mkr1 =  new google.maps.Marker({
+                    position: {lat: lat, lng: long},
+                    map: map1,
+                });
+
                 var inf = new google.maps.InfoWindow({
                     content: "<a href='/device-details/"+pk+"'>"+name + ':' + mkr.getPosition() + "</a>",
+                });
+                var inf1 = new google.maps.InfoWindow({
+                    content: "<a href='/device-details/"+pk+"'>"+name + ':' + mkr1.getPosition() + "</a>",
                 });
 
                 // mkr.addListener("click", () => {
@@ -199,6 +212,7 @@
                 // });
                 
                 inf.open(map, mkr);
+                inf.open(map1, mkr1);
             }  
         }
     }
@@ -227,6 +241,8 @@
     $('.select2').select2();
 </script>
     <div id="map_canvas" style="height: 500px; width:90%; margin: 5%;float:left"></div>
+    <div id="map_canvas1" style="height: 500px; width:90%; margin: 5%;float:left"></div>
+    
   
   <!-- map -->
   <!-- <div class="container">
