@@ -42,7 +42,7 @@ def map_view(request, **kwargs):
         pk = request.POST['pk']
         if pk:
             devises = DeviseLocation.objects.filter(devise__pk = pk)
-            zoom    = 11
+            zoom    = 19
         else :
             devises = DeviseLocation.objects.all()
     else :
