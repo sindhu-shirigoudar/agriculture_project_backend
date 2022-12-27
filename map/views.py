@@ -37,10 +37,12 @@ from agriapp.models import DeviseLocation, Devise, DeviseApis
 
 @login_required(login_url='/login1/')    
 def map_view(request, **kwargs):
+    zoom = 0
     if request.method == 'POST':
         pk = request.POST['pk']
         if pk:
             devises = DeviseLocation.objects.filter(devise__pk = pk)
+            zoom    = 11
         else :
             devises = DeviseLocation.objects.all()
     else :
@@ -53,6 +55,7 @@ def map_view(request, **kwargs):
     context = {
         'devises' : devises,
         'devices' : devices,
+        'zoom'    : zoom,
     }
     return render(request, 'map/map_index.html', context=context)
 

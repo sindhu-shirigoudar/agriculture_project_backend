@@ -159,6 +159,7 @@
     </nav>
   <!-- end navbar -->
 <input type="hidden" name="" id="locs" value="{% for devise in devises %}-{{devise.devise.name}},{{devise.latitude}},{{devise.longitude}},{{devise.devise.pk}}{% endfor %}">
+<input type="hidden" name="" id="zoom" value="{{zoom}}">
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
@@ -168,13 +169,27 @@
     var map;
     var map1;
     function initialize() {
-        directionsDisplay = new google.maps.DirectionsRenderer();
+        directionsDisplay  = new google.maps.DirectionsRenderer();
         directionsDisplay1 = new google.maps.DirectionsRenderer();
-        var india      = new google.maps.LatLng(15.3173, 75.7139);
-        var mapOptions = { zoom:7, mapTypeId: google.maps.MapTypeId.HYBRID , center: india } // ROADMAP , HYBRID , SATELLITE , TERRAIN 
-        var mapOptions1 = { zoom:7, mapTypeId: google.maps.MapTypeId.ROADMAP , center: india } // ROADMAP , HYBRID , SATELLITE , TERRAIN 
-        map            = new google.maps.Map(document.getElementById("map_canvas"), mapOptions); // 
-        map1            = new google.maps.Map(document.getElementById("map_canvas1"), mapOptions1); // 
+        locations          = document.getElementById("locs").value;
+        zoom               = parseFloat(document.getElementById("zoom").value);
+        locations          = locations.split('-')
+        console.log(zoom)
+        if (zoom != 0) {
+            var tt    = locations[1].split(',');
+            latitude  = parseFloat(tt[1]);
+            longitude = parseFloat(tt[2]);
+        } else {
+            latitude  = 15.3173;
+            longitude = 75.7139;
+            zoom      = 7
+        }
+        console.log(zoom)
+        var india          = new google.maps.LatLng(latitude, longitude);
+        var mapOptions     = { zoom:zoom, mapTypeId: google.maps.MapTypeId.HYBRID , center: india } // ROADMAP , HYBRID , SATELLITE , TERRAIN 
+        var mapOptions1    = { zoom:zoom, mapTypeId: google.maps.MapTypeId.ROADMAP , center: india } // ROADMAP , HYBRID , SATELLITE , TERRAIN 
+        map                = new google.maps.Map(document.getElementById("map_canvas"), mapOptions); // 
+        map1               = new google.maps.Map(document.getElementById("map_canvas1"), mapOptions1); // 
         directionsDisplay.setMap(map);
         directionsDisplay1.setMap(map1);
 
