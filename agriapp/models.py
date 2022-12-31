@@ -29,7 +29,6 @@ class Devise(models.Model):
     balance_amount= models.FloatField(default=0)
     created_at    = models.DateTimeField(auto_now_add=True)
 
-
     def __str__(self):
         return self.name + self.devise_id
 
@@ -54,8 +53,10 @@ class DeviseApis(models.Model):
     chlorine              = models.FloatField(default=0.0)
     nickel                = models.FloatField(default=0.0)
     organic_carboa        = models.FloatField(default=0.0)
-    nickel                = models.FloatField(default=0.0)    
     created_at            = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.device.name + ' ' + self.area_name
 
 
 class DeviseLocation(models.Model):
@@ -65,4 +66,15 @@ class DeviseLocation(models.Model):
     status     = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.devise.name
 
+class APICountThreshold(models.Model):
+    devise = models.ForeignKey(to='Devise', on_delete=models.CASCADE, unique=True)
+    red    = models.IntegerField()
+    orange = models.IntegerField()
+    blue   = models.IntegerField()
+    green  = models.IntegerField()
+
+    def __str__(self):
+        return self.devise.name

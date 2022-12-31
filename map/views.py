@@ -3,7 +3,7 @@ import folium as fol
 import geocoder as geo
 import os
 from django.contrib.auth.decorators import login_required
-from agriapp.models import DeviseLocation, Devise, DeviseApis
+from agriapp.models import DeviseLocation, Devise, DeviseApis, APICountThreshold
 
 # Create your views here.
 
@@ -34,28 +34,58 @@ from agriapp.models import DeviseLocation, Devise, DeviseApis
 #     }
 #     return render(request, 'map/map_index.html', context = context)
 
+def get_marker_color(devise):
+    if devise:
+        api_thresholds = APICountThreshold.objects.filter(devise = devise).first()
+        api_count      = len(DeviseApis.objects.filter(device = devise))
+        color          = 'pink'
+
+        if api_thresholds:
+            if api_count >= api_thresholds.red:
+                color = 'red'
+            if api_count >= api_thresholds.orange and api_count <= api_thresholds.red:
+                color = 'orange'
+            if api_count >= api_thresholds.blue and api_count <= api_thresholds.orange:
+                color = 'blue'
+            if api_count >= api_thresholds.green and api_count <= api_thresholds.blue:
+                color = 'green'
+            if api_count < api_thresholds.green:
+                color = 'pink'
+    return color
 
 @login_required(login_url='/login1/')    
 def map_view(request, **kwargs):
     zoom = 0
+    pk = ''
+    
     if request.method == 'POST':
         pk = request.POST['pk']
-        if pk:
-            devises = DeviseLocation.objects.filter(devise__pk = pk)
-            zoom    = 19
-        else :
-            devises = DeviseLocation.objects.all()
+    elif (kwargs):
+        pk = kwargs['pk']
+        
+    if pk:
+        devises = DeviseLocation.objects.filter(devise__pk = pk)
+        zoom    = 19
     else :
         devises = DeviseLocation.objects.all()
-    devices = DeviseLocation.objects.all()
-    locations = []
-    for devise in devises:
-        locations.append([devise.devise.name, devise.latitude, devise.longitude])
+
+    display_devises_location = dict()
+    for devices_location in devises:
+        display_devises_location[devices_location.pk] = {
+            'name' : devices_location.devise.name,
+            'latitude' : devices_location.latitude,
+            'longitude' : devices_location.longitude,
+            'devise_pk' : devices_location.devise.pk,
+            'color' : get_marker_color(devices_location.devise)
+        }
+        
+        # icon: { url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" } # icon color for map
     
     context = {
-        'devises' : devises,
-        'devices' : devices,
+        'filter_devise_list' : DeviseLocation.objects.all(),
+        'devises' : display_devises_location,
         'zoom'    : zoom,
     }
     return render(request, 'map/map_index.html', context=context)
+
 

@@ -32,6 +32,14 @@
  </nav>
 <!-- end navbar -->
 
+<!-- success message -->
+{% if messages %}
+{% for message in messages %}
+    <div class="alert alert-dismissible alert-success mt-5">
+    <strong>{{message}}</strong>
+    </div>
+{% endfor %}
+{% endif %}
 
 <section style="background-color: #eee;" style="margin-top: 100px;">
     <!-- <div class="container py-5">
@@ -77,15 +85,34 @@
                   <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
                   <p class="mb-0"><a href="{% url 'api-list' devise.pk %}">Devise API calls</a></p>
                 </li>
-                <!--
+
                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                  <p class="mb-0">mdbootstrap</p>
+                  <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                  {% if api_threshold %}
+
+                    <p class="mb-0"><a href="{% url 'update-api-threshold' pk=api_threshold.pk devise_pk=devise.pk %}">Update API Thresholds</a></p>
+                    <br>
+                    <ul>
+                      <li style="color: red;">
+                        {{api_threshold.red}} >= 100 RED
+                      </li>
+                      <li style="color: orange;">
+                        {{api_threshold.orange}} >= 80 ORANGE
+                      </li>
+                      <li style="color: blue;">
+                        {{api_threshold.blue}}>= 50 BLUE
+                      </li>
+                      <li style="color: green;">
+                        >= 20 green
+                      </li>
+                      <li style="color: pink;">
+                         < 20 PINK
+                      </li>
+                    </ul>
+                  {% else %}
+                    <p class="mb-0"><a href=" {% url 'add-api-threshold' devise.pk %}">Add API Thresholds</a></p>
+                  {% endif %}
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                  <p class="mb-0">mdbootstrap</p>
-                </li> -->
               </ul>
             </div>
           </div>

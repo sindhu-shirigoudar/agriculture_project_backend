@@ -5,13 +5,14 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 
 from .forms import ContactForm, DeviseForm
-from .models import ContactDetails, Devise, DeviseApis
+from .models import ContactDetails, Devise, DeviseApis, APICountThreshold
 
 from . import UserFuncrtions
 from django.views.generic import UpdateView
 from django.urls import reverse
 from django.contrib import messages #import messages
 from datetime import datetime
+from django.views.generic import CreateView, UpdateView
 
 # Create your views here.
 
@@ -165,11 +166,37 @@ def api_list(request, **kwargs):
 
 def devise_details(request, **kwargs):
     devise  = Devise.objects.get(pk = kwargs['pk'])
+
+    # for i in range(56):
+    #     DeviseApis.objects.create(
+    #         device=devise,
+    #         area_name='bond'+str(i),
+    #         devise_id=70099+i,
+    #         serial_no=1208827+i,
+    #         electrical_conduction=89,
+    #         nitrogen=13,
+    #         phosphorous=45,
+    #         potassium=98,
+    #         calcium=43,
+    #         magnesium=23,
+    #         zinc=55,
+    #         manganese=78,
+    #         iron=89,
+    #         copper=65,
+    #         boron=12,
+    #         molybdenum=49,
+    #         chlorine=23,
+    #         nickel=44,
+    #         organic_carboa=12,
+    #         )
+
+
     apis    = DeviseApis.objects.filter(device=devise)
     template_name = "devise_details1.html"
     context       = {
-        'devise' : devise,
-        'api_usage' : len(apis),
+        'devise'        : devise,
+        'api_usage'     : len(apis),
+        'api_threshold' : APICountThreshold.objects.filter(devise=devise).first(),
     }
     return render(request, template_name = template_name, context=context)
 
@@ -195,3 +222,32 @@ class UpdateApi(UpdateView):
 
     def get_success_url(self):
         return reverse('api-overview', kwargs={'pk': self.kwargs['pk']})
+
+class APIThresholdForm(CreateView):
+    template_name = 'api_threshold_form.html'
+    model         = APICountThreshold
+    fields        = '__all__'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['pk'] = self.kwargs['pk']
+        return context
+    def get_success_url(self):
+        return reverse('device-details', kwargs={'pk': self.kwargs['pk']})
+    
+    def get_initial(self):
+        devise = Devise.objects.get(pk = self.kwargs['pk'])
+        return {'devise' : devise}
+
+class APIThresholdFormUpdate(UpdateView):
+    template_name = 'api_threshold_form.html'
+    model         = APICountThreshold
+    fields        = '__all__'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['pk'] = self.kwargs['devise_pk']
+        return context
+
+    def get_success_url(self):
+        return reverse('device-details', kwargs={'pk': self.kwargs['devise_pk']})
