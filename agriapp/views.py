@@ -199,8 +199,6 @@ def devise_details(request, **kwargs):
     if (len(apis)):
         api_thresholds = APICountThreshold.objects.filter(devise=devise).first()
         if api_thresholds:
-            # used     = len(apis) / api_thresholds.red
-            # remaining = (len(apis) - api_thresholds.red) / api_thresholds.red
             val       = api_thresholds.red - len(apis)
             used      = len(apis)
             remaining = 0 if(val < 0) else api_thresholds.red - len(apis)
