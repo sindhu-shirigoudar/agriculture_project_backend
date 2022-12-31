@@ -30,7 +30,7 @@ class Devise(models.Model):
     created_at    = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name + self.devise_id
+        return self.name + ' ' + self.devise_id
 
 class DeviseApis(models.Model):
     device                = models.ForeignKey(to='Devise', on_delete=models.CASCADE)
@@ -60,7 +60,7 @@ class DeviseApis(models.Model):
 
 
 class DeviseLocation(models.Model):
-    devise     = models.ForeignKey(to='Devise', on_delete=models.CASCADE)
+    devise     = models.ForeignKey(to='Devise', on_delete=models.CASCADE, unique=True)
     latitude   = models.FloatField(default=0)
     longitude  = models.FloatField(default=0)
     status     = models.BooleanField(default=True)

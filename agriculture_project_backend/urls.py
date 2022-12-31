@@ -36,5 +36,6 @@ urlpatterns = [
     # path('auth/',include('authapp.urls')),
     path('', include('agriapp.urls')),
     path('', include('map.urls')),
+    path('api/', include('devise_apis.urls')),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # 'knox',
     # 'djoser',
     'rest_framework',
+    'devise_apis',
     # 'rest_framework.authtoken',
 ]
 
@@ -85,11 +86,11 @@ DATABASES = {
 }
 
 # fro authentication
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'knox.auth.TokenAuthentication',
-    ),
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'knox.auth.TokenAuthentication',
+#     ),
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
