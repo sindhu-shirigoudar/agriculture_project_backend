@@ -42,8 +42,8 @@
 {% endif %}
 
 <section style="background-color: #eee;" style="margin-top: 100px;">
-    <!-- <div class="container py-5">
-      <div class="row">
+    <!-- <div class="container py-5"> -->
+    <!--  <div class="row">
         <div class="col">
           <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
             <ol class="breadcrumb mb-0">
@@ -108,12 +108,51 @@
                       <li style="color: pink;">
                          < 20 PINK
                       </li>
-                    </ul>
-                  {% else %}
-                    <p class="mb-0"><a href=" {% url 'add-api-threshold' devise.pk %}">Add API Thresholds</a></p>
-                  {% endif %}
                 </li>
               </ul>
+
+
+
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <!-- pie chart -->
+              <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+              <div id="myChart" style="width:100%; max-width:500px; height:150px;"></div>
+              <script>
+                google.charts.load('current', {'packages':['corechart']});
+                google.charts.setOnLoadCallback(drawChart);
+                
+                function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                  ['Contry', 'Mhl'],
+                  ['used',{{used}}],
+                  ['Remaining',{{remaining}}],
+                ]);
+                
+                var options = {
+                  title:'API calls chart',
+                  is3D: true,
+                  width: 400,
+                  height: 200,
+                  colors: ['{{color}}', 'pink'],
+                  pieSliceText: 'value'
+                };
+                
+                var chart = new google.visualization.PieChart(document.getElementById('myChart'));
+                  chart.draw(data, options);
+                }
+                </script>
+                <!-- end pie chart -->
+              </li>
+
+            </ul>
+          {% else %}
+            <p class="mb-0"><a href=" {% url 'add-api-threshold' devise.pk %}">Add API Thresholds</a></p>
+          {% endif %}
+
+
+
+
+
             </div>
           </div>
         </div>
@@ -249,5 +288,5 @@
           </div>
         </div>
       </div>
-    </div>
+    <!-- </div> -->
   </section>

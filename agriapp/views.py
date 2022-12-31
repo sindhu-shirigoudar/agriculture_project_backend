@@ -13,6 +13,7 @@ from django.urls import reverse
 from django.contrib import messages #import messages
 from datetime import datetime
 from django.views.generic import CreateView, UpdateView
+from map.views import get_marker_color
 
 # Create your views here.
 
@@ -191,12 +192,26 @@ def devise_details(request, **kwargs):
     #         )
 
 
-    apis    = DeviseApis.objects.filter(device=devise)
+    apis          = DeviseApis.objects.filter(device=devise)
     template_name = "devise_details1.html"
+    used          = 0
+    remaining     = 0
+    if (len(apis)):
+        api_thresholds = APICountThreshold.objects.filter(devise=devise).first()
+        if api_thresholds:
+            # used     = len(apis) / api_thresholds.red
+            # remaining = (len(apis) - api_thresholds.red) / api_thresholds.red
+            val       = api_thresholds.red - len(apis)
+            used      = len(apis)
+            remaining = 0 if(val < 0) else api_thresholds.red - len(apis)
+
     context       = {
         'devise'        : devise,
         'api_usage'     : len(apis),
         'api_threshold' : APICountThreshold.objects.filter(devise=devise).first(),
+        'used'          : used,
+        'color'         : get_marker_color(devise),
+        'remaining'     : remaining,
     }
     return render(request, template_name = template_name, context=context)
 
