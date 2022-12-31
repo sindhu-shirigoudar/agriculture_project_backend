@@ -19,7 +19,7 @@ def get_devise_by_devise_id(request):
         devise_id = request.POST['devise_id']
         devise = Devise.objects.filter(devise_id=devise_id).first()
         if devise:
-            return Response({'devise' : devise.pk}, status.HTTP_200_OK)
+            return Response({'device' : devise.pk}, status.HTTP_200_OK)
         else:
             return Response({'message' : 'Please send valid devse id'}, status.HTTP_400_BAD_REQUEST)
     except  Exception as e:
