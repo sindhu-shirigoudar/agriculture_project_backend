@@ -25,7 +25,7 @@ body {
 	transition: all ease .5s;
 }
 .mybg-dark {
-    background: #4b4862  !important;
+    background: #04BF00  !important;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
 }
 h3.my-heading {
@@ -646,7 +646,7 @@ footer.footer p{font-size: 18px;color:#dcdcdc;}
 	}
 } */
 
-body {
+/* body {
     background: linear-gradient(87deg,#36f50d,#4e56f9,#87fc7b);
     background-size: 180% 180%;
     animation: gradient-animation 30s ease infinite;
@@ -662,4 +662,4 @@ body {
     100% {
       background-position: 0% 50%;
     }
-  }
+  } */
