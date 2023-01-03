@@ -46,7 +46,16 @@ header{
     color: #ffffff;
     overflow: hidden;
 }
-.overlay{position:absolute;background-color:#212529;height:100%;width:100%;top:0;left:0;opacity:.3}
+.overlay{
+    position:absolute;
+    /* background-color:#212529; */
+    height:100%;
+    width:100%;
+    top:0;
+    left:0;
+    /* opacity:.3; */
+    background-image: linear-gradient(to bottom right, #04BF00, #43ca41);
+}
 header .tophead{
     margin-top: 150px;
 	
@@ -104,7 +113,7 @@ header .btn-account{
 /***overview***/
 .overview-wrap .title-overview{
 	text-align: center;
-    color: #3dce8c;
+    /* color: #3dce8c; */
     text-transform: uppercase;
     font-weight: bold;
     font-size: 36px;
@@ -616,4 +625,23 @@ footer.footer p{font-size: 18px;color:#dcdcdc;}
 	.contactForm{padding: 0;}
 	.contact-wrap h2{font-size: 25px;}
 
+}
+
+body {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
