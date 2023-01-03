@@ -528,12 +528,6 @@ input.btn-login {
 }
 
 
-/* Footer */
-footer.footer{padding:4rem 0;}
-footer.footer ul li a{color: #ffffff;text-decoration: none;}
-footer.footer p{font-size: 18px;color:#dcdcdc;}
-
-
 /***responsive---/
 
 @media only screen and (min-width: 960px) and (max-width: 1023px) {}
@@ -663,3 +657,6 @@ footer.footer p{font-size: 18px;color:#dcdcdc;}
       background-position: 0% 50%;
     }
   } */
+
+
+  /* footer */
