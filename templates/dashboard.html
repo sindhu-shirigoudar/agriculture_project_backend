@@ -3,7 +3,15 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="{% static 'dashboard/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'dashboard/css/animation.css' %}">
+<script src="{% static 'dashboard/js/animation.js' %}"></script>
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
 <body>
+    <!-- <div class="square parallax-one"></div>
+    <div class="circle"></div>
+    <h1 class="text move-text parallax-two">Welcome</h1> -->
     <!-- navbar -->
     <nav class="navbar fixed-top navbar-expand navbar-dark bg-dark" >
         <div class="container-fluid">
@@ -30,4 +38,7 @@
         <button class="rounded bg-dark text-white" id="dashboard-buttons" style="width: 50%;float: left;" onclick="window.location={% url 'notifications' %}">Notifications</button>
         <button class="rounded bg-dark text-white" id="dashboard-buttons" style="width: 50%;float: left;" onclick="window.location={% url 'add-devise' %}">Add devise</button>
     </div>
+
+
+ 
 </body>

@@ -6,6 +6,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
     <link rel="stylesheet" href="{% static 'devise/devise_details1.css' %}">
+    <link rel="stylesheet" href="{% static '/home/css/popup.css' %}" type="text/css">
+    <script src="{% static '/home/js/popup.js' %}"></script>  
 </header>
 
 
@@ -42,11 +44,16 @@
     </div>
 {% endfor %}
 {% endif %}
-<div class="row">
+<a class="btn btn-primary btn-sm btn-icon-text" href="{% url 'api-edit' api.device.id %}" >Edit</a> 
+<a class=" btn btn-primary btn-sm btn-icon-text menu__link" href="#popup1">View chart</a>
+<a class=" btn btn-primary btn-sm btn-icon-text menu__link" href="#popup1">View Recomended crops</a>
+<a class="btn btn-primary btn-sm btn-icon-text" href="{% url 'api-list' api.device.pk %}" >Back</a>
+<div class="row mt-2">
   <div class="col-md-6">
     <div class="card mb-4 mb-md-0">
       <div class="card-body">
-        <p class="mb-4"><span class="text-primary font-italic me-1">API</span> Parameters <a href="{% url 'api-edit' api.device.id %}" >Edit</a> <a class="ml-1" href="{% url 'api-list' api.device.pk %}" >Back</a></p>
+        <p class="mb-4"><span class="text-primary font-italic me-1">API</span> Parameters</p>
+        <hr> 
 
         <p class="mt-4 mb-1" style="font-size: .77rem;">Devse id : {{api.devise_id}}</p>
         <p class="mt-4 mb-1" style="font-size: .77rem;">Serial no : {{api.serial_no}}</p>
@@ -158,7 +165,6 @@
     </div>
   </div>
 </div>
-
 <!-- pichart -->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
 <script>
@@ -182,27 +188,62 @@
         });
     });
 </script>
-<div class="page-content page-container mt-5" id="page-content">
-    <div class="padding">
-        <div class="row">
-            <div class="container-fluid d-flex justify-content-center">
-                <div class="col-sm-8 col-md-6">
-                    <div class="card">
-                        <div class="card-header">Pie chart</div>
-                        <div class="card-body" style="height: 420px">
-                            <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
-                                <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                                    <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
-                                </div>
-                                <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                                    <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
-                                </div>
-                            </div> <canvas id="chart-line" width="299" height="200" class="chartjs-render-monitor" style="display: block; width: 299px; height: 200px;"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- pichart -->
+
+<div id="popup1" class="overlay1">
+  <div class="popup" style="width: 70%;">
+      <center>
+        <a class="close" href="#">&times;</a>
+        <div class="page-content page-container mt-5" id="page-content">
+          <div class="padding">
+              <div class="row">
+                  <div class="container-fluid d-flex justify-content-center">
+                      <div class="col-sm-8 col-md-6">
+                          <div class="card">
+                              <div class="card-header" style="color: #4b2711;">Pie chart</div>
+                              <div class="card-body" style="height: 420px">
+                                  <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                                      <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                          <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                                      </div>
+                                      <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                          <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                                      </div>
+                                  </div> <canvas id="chart-line" width="299" height="200" class="chartjs-render-monitor" style="display: block; width: 299px; height: 200px;"></canvas>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </center>
+  </div>
 </div>
+
+<!-- 
+<div class="page-content page-container mt-5" id="page-content">
+  <div class="padding">
+      <div class="row">
+          <div class="container-fluid d-flex justify-content-center">
+              <div class="col-sm-8 col-md-6">
+                  <div class="card">
+                      <div class="card-header">Pie chart</div>
+                      <div class="card-body" style="height: 420px">
+                          <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                              <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                  <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                              </div>
+                              <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                  <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                              </div>
+                          </div> <canvas id="chart-line" width="299" height="200" class="chartjs-render-monitor" style="display: block; width: 299px; height: 200px;"></canvas>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div> -->
+
 <!-- end pi chart -->
