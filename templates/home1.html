@@ -4,6 +4,8 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="{% static '/home/css/home1.css' %}" type="text/css">
 <link rel="stylesheet" href="{% static '/home/css/popup.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static '/home/css/image_animation.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static '/home/css/images.css' %}" type="text/css">
 <script src="{% static '/home/js/popup.js' %}"></script>    
 <!------ Include the above in your HEAD tag ---------->
 
@@ -47,7 +49,7 @@
             {% endif %}
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-7 ">
+                    <div class="col-md-6">
                         <h1 class="title-main wow fadeInLeft" data-wow-duration="1.5s">ArkaShine Innovations Pvt Ltd</h1>
                         <h3 class="subtitle-main wow fadeInUp" data-wow-duration="1.1s">
                             Compact portable soil testing machines that are easy to carry, easy to operate, easy to refill and reuse, provide results on palm, requiring less skilled labor in providing timely soil test results as fertilizer and crop recommend to farmers through use of technology towards a greener footprint for climate change.
@@ -57,12 +59,115 @@
 							<!-- <a href="javascript:void(0)" class="btn-account ">Button</a> -->
 						</div>
                     </div>
+                    <div class="col-md-5">
+                        <center>
+                            <ul id="ul" style="margin-top: -65px;">
+                                <li id="li"><a href="#ai_popup"><img title="Complete automation" id="img" src="{% static '/home/images/feature1.png' %}"/></a></li>
+                                <li id="li"><a href="#ai_popup1"><img title="complete automation" id="img" src="{% static '/home/images/feature2.png' %}"/></a></li>
+                                <li id="li"><a href="#soil_popup"><img title="Soil on chip technology" id="img" src="{% static '/home/images/feature3.png' %}"/></a></li>
+                                <li id="li"><a href="#soil_popup1"><img title="Soil on chip technology" id="img" src="{% static '/home/images/feature4.png' %}"/></a></li>
+                                <li id="li"><a href="#map_popup"><img title="Mapped recommendation unit" id="img" src="{% static '/home/images/feature5.png' %}"/></a></li>
+                                <li id="li"><a href="#ml_popup"><img title="AI and ML" id="img" src="{% static '/home/images/feature8.png' %}"/></a></li>
+                            </ul>
+                        </center>
+                    </div>
                 </div>
             </div>
+                        
+ <!-- ai details  popup -->
+ <div id="ai_popup" class="overlay1">
+    <div class="popup" id="feature-css" style="background-image: url({% static '/home/images/feature1.png' %});">
+        <center>
+            <h2 style="color: #4b2711;">complete automation</h2>
+            <hr>
+            <a class="close" href="#">&times;</a>
+            <h4 class="content">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur quaerat eaque natus molestiae laborum dolore eos at voluptatum laudantium exercitationem asperiores dolores reiciendis vel, debitis nihil accusamus error ducimus cupiditate.
+            </h4>
+        </center>
+    </div>
+</div>   
+<!-- end ai details  popup  -->
 
-        </div>
+ <!-- ai ai_popup1 -->
+ <div id="ai_popup1" class="overlay1">
+    <div class="popup" id="feature-css" style="background-image: url({% static '/home/images/feature2.png' %});">
+        <center>
+            <h2 style="color: #4b2711;">complete automation</h2>
+            <hr>
+            <a class="close" href="#">&times;</a>
+            <h4 class="content">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur quaerat eaque natus molestiae laborum dolore eos at voluptatum laudantium exercitationem asperiores dolores reiciendis vel, debitis nihil accusamus error ducimus cupiditate.
+            </h4>
+        </center>
+    </div>
+</div>   
+<!-- end ai_popup1  -->
+
+ <!-- soil_popup -->
+ <div id="soil_popup" class="overlay1">
+    <div class="popup" id="feature-css" style="background-image: url({% static '/home/images/feature3.png' %});">
+        <center>
+            <h2 style="color: #4b2711;">complete automation</h2>
+            <hr>
+            <a class="close" href="#">&times;</a>
+            <h4 class="content">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur quaerat eaque natus molestiae laborum dolore eos at voluptatum laudantium exercitationem asperiores dolores reiciendis vel, debitis nihil accusamus error ducimus cupiditate.
+            </h4>
+        </center>
+    </div>
+</div>   
+<!-- end soil_popup  -->
+
+ <!-- soil_popup1 -->
+ <div id="soil_popup1" class="overlay1">
+    <div class="popup" id="feature-css" style="background-image: url({% static '/home/images/feature4.png' %});">
+        <center>
+            <h2 style="color: #4b2711;">complete automation</h2>
+            <hr>
+            <a class="close" href="#">&times;</a>
+            <h4 class="content">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur quaerat eaque natus molestiae laborum dolore eos at voluptatum laudantium exercitationem asperiores dolores reiciendis vel, debitis nihil accusamus error ducimus cupiditate.
+            </h4>
+        </center>
+    </div>
+</div>   
+<!-- end soil_popup1  -->
+
+ <!-- map_popup -->
+ <div id="map_popup" class="overlay1">
+    <div class="popup" id="feature-css" style="background-image: url({% static '/home/images/feature5.png' %});">
+        <center>
+            <h2 style="color: #4b2711;">complete automation</h2>
+            <hr>
+            <a class="close" href="#">&times;</a>
+            <h4 class="content">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur quaerat eaque natus molestiae laborum dolore eos at voluptatum laudantium exercitationem asperiores dolores reiciendis vel, debitis nihil accusamus error ducimus cupiditate.
+            </h4>
+        </center>
+    </div>
+</div>   
+<!-- end map_popup  -->
+
+ <!-- ml_popup -->
+ <div id="ml_popup" class="overlay1">
+    <div class="popup" id="feature-css" style="background-image: url({% static '/home/images/feature8.png' %});">
+        <center>
+            <h2 style="color: #4b2711;">complete automation</h2>
+            <hr>
+            <a class="close" href="#">&times;</a>
+            <h4 class="content">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur quaerat eaque natus molestiae laborum dolore eos at voluptatum laudantium exercitationem asperiores dolores reiciendis vel, debitis nihil accusamus error ducimus cupiditate.
+            </h4>
+        </center>
+    </div>
+</div>   
+<!-- end ml_popup  -->
+
+
         <div class="sesgoabajo"></div>
     </header>
+
     <main>
         <section class="overview-wrap" id="overview">
             <div class="container">
@@ -81,10 +186,38 @@
                             AI and ML based prediction models for fertilizer and crop recommendations.
                         </span>
                     </p>
+
+                    <!-- images -->
+
+                    <div class="photo-album mb-5">
+		
+                        
+                        <a href="" class="large polaroid img1"><img src="{% static '/home/images/img1.png' %}" alt="" style="width: 100%;">Our product</a>
+                        <a href="" class="polaroid img2"><img src="{% static '/home/images/img2.png' %}" alt="" style="width: 100%;">Our product</a>
+                        <a href="" class="small polaroid img3"><img src="{% static '/home/images/img3.png' %}" alt="" style="width: 100%;">Our product</a>
+                        
+                        <a href="" class="medium polaroid img4"><img src="{% static '/home/images/img4.png' %}" alt="" style="width: 100%;">Our product</a>
+                        
+                        <a href="" class="polaroid img5"><img src="{% static '/home/images/img5.png' %}" alt="" style="width: 100%;">Our product</a>
+                        
+                        
+                        <a href="" class="polaroid img6"><img src="{% static '/home/images/img6.png' %}" alt="" style="width: 100%;">Our product</a>
+                        
+                        <a href="" class="polaroid img7"><img src="{% static '/home/images/img1.png' %}" alt="" style="width: 100%;">Our product</a>
+                        <a href="" class="small polaroid img8"><img src="{% static '/home/images/img2.png' %}" alt="" style="width: 100%;">Our product</a>
+                        <a href="" class="medium polaroid img9"><img src="{% static '/home/images/img3.png' %}" alt="" style="width: 100%;">Our product</a>
+                        <a href="" class="polaroid img10"><img src="{% static '/home/images/img4.png' %}" alt="" style="width: 100%;">Our product</a>
+                        <a href="" class="small polaroid img11"><img src="{% static '/home/images/img5.png' %}" alt="" style="width: 100%;">Our product</a>
+                        <a href="" class="small polaroid img12"><img src="{% static '/home/images/img6.png' %}" alt="" style="width: 100%;">Our product</a>
+                        <a href="" class="small polaroid img13"><img src="{% static '/home/images/img1.png' %}" alt="" style="width: 100%;">Our product</a>
+                        <a href="" class="small polaroid img14"><img src="{% static '/home/images/img2.png' %}" alt="" style="width: 100%;">Our product</a>
+                        <a href="" class="polaroid img15"><img src="{% static '/home/images/img3.png' %}" alt="" style="width: 100%;">Our product</a>
+                    </div>
+                    <!-- end images -->
                     <div class="row">
-                        <div class="col-md-6 col-lg-6 col-xs-6 wow bounceInUp " data-wow-duration="1.4s" >
+                        <div class="col-md-6 col-lg-6 col-xs-6 wow bounceInUp" data-wow-duration="1.4s">
                             <video autoplay muted loop id="myVideo" style="height:300px; float: left;width:100%;" class="rounded">
-                                <source src="{%  static '/home/autoplay.mp4'%}" type="video/mp4">
+                                <source src="{%  static '/home/video1.mp4'%}" type="video/mp4">
                                 Your browser does not support HTML5 video.
                             </video>
                         </div> 
@@ -108,13 +241,13 @@
                             </script>
                     </div>
                     <div class="row mt-2">
-                        <div class="col-md-6 col-lg-6 col-xs-6 wow bounceInUp" data-wow-duration="1.4s">
+                        <div class="col-md-5 col-lg-5 col-xs-5 wow bounceInUp" data-wow-duration="1.4s">
                             <h5 class="title-overview wow fadeInUp" style="color: #4b2711;">product description</h5>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero magni eveniet cum, debitis assumenda quos consequatur sit ducimus, maiores esse tenetur saepe voluptatem dolorem adipisci voluptatum odit! Laudantium, accusantium beatae!</p>
                         </div> 
-                        <div class="col-md-6 col-lg-6 col-xs-6 wow bounceInUp " data-wow-duration="1.4s" >
+                        <div class="col-md-7 col-lg-7 col-xs-7 wow bounceInUp " data-wow-duration="1.4s" >
                             <video autoplay muted loop id="myVideo" style="height:300px; float: left;width:100%;" class="rounded"-5>
-                                <source src="{%  static '/home/autoplay.mp4'%}" type="video/mp4">
+                                <source src="{%  static '/home/video2.mp4'%}" type="video/mp4">
                                 Your browser does not support HTML5 video.
                             </video>
                         </div> 
@@ -123,9 +256,13 @@
             </div>
         </section>
 
+
+        
+
+
         <!-- partners -->
 
-        <section class="overview-wrap" style="float: left;">
+        <section class="overview-wrap mt-2" style="float: left;margin-bottom: 100px;">
             <h2 class="title-overview wow fadeInUp" style="color: #4b2711;">Our Partners</h2>
             <div class="col-md-12 col-lg-12 wow bounceInUp">
                 <img class="col-md-6 col-lg-3 wow bounceInUp" src="{% static 'dashboard/p1.PNG' %}" style="width: 33.3%;float: left;">
@@ -265,17 +402,22 @@
                         <hr>
                         <a class="close" href="#foot">&times;</a>
                         <div class="content">
+                            <b>Phone: </b> +91 9611297893
+                            <br>
+                            <b>Email ids: </b> <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=karbari.rsudha@gmail.com" target="_blank">karbari.rsudha@gmail.com</a>, 
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=sudha.karbari@arkashine-innovations.com" target="_blank"> sudha.karbari@arkashine-innovations.com</a>, 
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=ramesh.karbari@arkashine-innovations.com" target="_blank"> ramesh.karbari@arkashine-innovations.com</a>
                             <table>
                                 <tr>
-                                    <td><b>Phone</b></td>
-                                    <td> +91-9611297893</td>
+                                    <td><b></b></td>
+                                    <td> </td>
                                 </tr>
                                 <tr>
-                                    <td><b>Email</b></td>
-                                    <td> karbari.rsudha@gmail.com<br>
-                                            sudha.karbari@arkashine-innovations.com
+                                    <td><b></b></td>
+                                    <td> <br>
+                                           
                                         <br>
-                                        ramesh.karbari@arkashine-innovations.com
+                                        
                                     </td>
                                 </tr>
                             </table>
