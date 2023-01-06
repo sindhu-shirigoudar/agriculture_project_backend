@@ -3,7 +3,8 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="{% static '/home/css/home1.css' %}" type="text/css">
-    
+<link rel="stylesheet" href="{% static '/home/css/popup.css' %}" type="text/css">
+<script src="{% static '/home/js/popup.js' %}"></script>    
 <!------ Include the above in your HEAD tag ---------->
 
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -147,7 +148,7 @@
             <div class="sesgoabajo"></div>
         </section> -->
 
-        <section class="cta contact-wrap" id="contact">
+        <!-- <section class="cta contact-wrap" id="contact">
 
             <div class="container">
                 <div class="row">
@@ -185,7 +186,7 @@
                 </div>
             </div>
 
-        </section>
+        </section> -->
     </main>
 
   
@@ -215,7 +216,7 @@
     </footer> -->
     
 
-    <footer class="footer" style="float: left;">
+    <footer class="footer" style="float: left;" id = "foot">
         <div class="waves">
           <div class="wave" id="wave1"></div>
           <div class="wave" id="wave2"></div>
@@ -237,12 +238,110 @@
             </a></li>
         </ul>
         <ul class="menu">
+
+            <!-- address -->
+            <div id="popup1" class="overlay1">
+                <div class="popup">
+                    <center>
+                        <h2 style="color: #4b2711;">Address</h2>
+                        <hr>
+                        <a class="close" href="#foot">&times;</a>
+                        <div class="content">
+                            Address : H. NO.9.1 2-226, 11th Cross,
+                            Bhawani Rice Mill Road,
+                            Vidyanagar colony,
+                            Bidar, Karnataka,
+                            lndia, 585403
+                        </div>
+                    </center>
+                </div>
+            </div>   
+            <!-- end address  -->
+            <!-- contact details -->
+            <div id="popup2" class="overlay1">
+                <div class="popup">
+                    <center>
+                        <h2 style="color: #4b2711;">Contact details</h2>
+                        <hr>
+                        <a class="close" href="#foot">&times;</a>
+                        <div class="content">
+                            <table>
+                                <tr>
+                                    <td><b>Phone</b></td>
+                                    <td> +91-9611297893</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Email</b></td>
+                                    <td> karbari.rsudha@gmail.com<br>
+                                            sudha.karbari@arkashine-innovations.com
+                                        <br>
+                                        ramesh.karbari@arkashine-innovations.com
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </center>
+                </div>
+            </div> 
+            <!-- end contact details -->
+            <!-- Paitentsw -->'
+            <div id="paitents" class="overlay1">
+                <div class="popup">
+                    <center>
+                        <h2 style="color: #4b2711;">Paitents</h2>
+                        <hr>
+                        <a class="close" href="#foot">&times;</a>
+                        <div class="content">
+                        
+                        </div>
+                    </center>
+                </div>
+            </div> 
+            <!-- end paitents -->
+            <!-- Get in touh with us -->
+            <div id="get_in_touch" class="overlay1">
+                <div class="popup" style="width: 60%;">
+                    <center>
+                        <h2 style="color: #4b2711;">Get in touch with us</h2>
+                        <hr>
+                        <a class="close" href="#foot">&times;</a>
+                        <div class="content">
+                            <div class="cta-inner text-center rounded">     
+                                <div class="contactForm">
+                                    <div style="color: red">
+                                        {{errors}}
+                                    </div>
+                                    <form  method="POST"> {% csrf_token %}
+                                        <div class="form-group">
+                                            <input type="text" name="name" class="form-control m-0" placeholder="Name" required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" name="mail" class="form-control m-0" placeholder="Email" required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="phone" class="form-control m-0" placeholder="phone" required="required">
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea class="form-control m-0" rows="4" cols="50" placeholder="Message" name="message"></textarea>
+                                        </div>
+                                        <div class="form-group" style="height: 10%;">
+                                            <div class="col-md-12">
+                                                <input type="submit" name="submit" value="Send" class="btn-login">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>  
+                    </center>
+                </div>
+            </div> 
+            <!-- end get in touch with us -->
           <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
-          <li class="menu__item"><a class="menu__link" href="#">About</a></li>
-          <li class="menu__item"><a class="menu__link" href="#">Services</a></li>
-          <li class="menu__item"><a class="menu__link" href="#">Team</a></li>
-          <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
-    
+          <li class="menu__item"><a class="menu__link" href="#get_in_touch">Help</a></li>
+          <li class="menu__item"><a class="menu__link" href="#paitents">Paitents</a></li>
+          <li class="menu__item"><a class="menu__link" href="#popup2">Contact details</a></li>
+          <li class="menu__item"><a class="menu__link" href="#popup1">Address</a></li>
         </ul>
         <p>&copy;Krish | All Rights Reserved</p>
       </footer>
