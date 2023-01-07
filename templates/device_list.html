@@ -85,9 +85,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
 </head>
     <!-- navbar -->
-    <nav class="navbar fixed-top navbar-expand navbar-dark bg-dark">
+    <nav class="navbar fixed-top navbar-expand navbar-dark" style="background-color: #4b2711;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'dsahboard' %}">
+            <a class="navbar-brand" href="{% url 'dashboard' %}">
                 <h3 class="my-heading" style="font-size: 15px;">ArkaShine Innovations Pvt Ltd</h3>
             </a>
                 <ul class="navbar-nav ml-auto">
@@ -209,7 +209,9 @@
                                     <td>
                                         <ul class="list-inline mb-0">
                                             <li class="list-inline-item">
-                                                <a href="{% url 'device-details' devise.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-detail font-size-18"></i></a>
+                                                <a href="{% url 'change-password' devise.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Change password" class="px-2 text-primary"><i class="bx bx-lock font-size-18"></i></a>
+                                                <a href="{% url 'map-devise' devise.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Devise location" class="px-2 text-primary"><i class="bx bx-map font-size-18"></i></a>
+                                                <a href="{% url 'device-details' devise.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Details" class="px-2 text-primary"><i class="bx bx-detail font-size-18"></i></a>
                                                 <a href="{% url 'edit-devise' devise.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
                                             </li>
                                             <!-- delete icon -->

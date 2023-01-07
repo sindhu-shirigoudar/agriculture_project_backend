@@ -10,7 +10,7 @@ def create_user(username, email):
     current_year = x.year
     current_year = str(current_year)
     password = username + 'P' + current_year + '_$'
-    user = User.objects.create_user(username, email, password)
+    User.objects.create_user(username, email, password)
 
 def send_message(to, body):
     # Find your Account SID and Auth Token at twilio.com/console
@@ -25,3 +25,8 @@ def send_message(to, body):
                         from_='+14094032838',
                         to=f"+919986168736"
                     )
+
+def change_password(username, password):
+    user = User.objects.get(username=username)
+    user.set_password(password)
+    user.save()

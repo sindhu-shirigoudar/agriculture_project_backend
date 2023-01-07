@@ -14,8 +14,47 @@ from django.contrib import messages #import messages
 from datetime import datetime
 from django.views.generic import CreateView, UpdateView
 from map.views import get_marker_color
+from django.contrib.auth.models import User
 
 # Create your views here.
+
+def user_login_access(request):
+    user = request.user
+    if not user.is_staff and user.is_authenticated:
+        devise    = Devise.objects.filter(devise_id=user.username).first()
+        apis      = DeviseApis.objects.filter(device=devise)
+        used      = 0
+        remaining = 0
+        if (len(apis)):
+            api_thresholds = APICountThreshold.objects.filter(devise=devise).first()
+            if api_thresholds:
+                val       = api_thresholds.red - len(apis)
+                used      = len(apis)
+                remaining = 0 if (val < 0) else api_thresholds.red - len(apis)
+
+        request.session['pk']             = devise.pk
+        request.session['name']           = devise.name
+        request.session['setial_no']      = devise.setial_no
+        request.session['devise_id']      = devise.devise_id
+        request.session['chipset_no']     = devise.chipset_no
+        request.session['email']          = devise.email
+        request.session['phone']          = devise.phone
+        request.session['address1']       = devise.address1
+        request.session['address2']       = devise.address2
+        request.session['purchase_date']  = str(devise.purchase_date)
+        request.session['time_of_sale']   = str(devise.time_of_sale)
+        request.session['warrenty']       = str(devise.warrenty)
+        request.session['amount_paid']    = devise.amount_paid
+        request.session['balance_amount'] = devise.balance_amount
+        request.session['api_usage']      = len(apis)
+        request.session['api_threshold']  = True if (api_thresholds) else False
+        request.session['used']           = used
+        request.session['color']          = get_marker_color(devise)
+        request.session['remaining']      = remaining
+
+        print(used, remaining, api_thresholds,'------------')
+
+        return redirect('/devise_user_details/')
 
 def home(request):
     if request.method == 'GET':
@@ -42,7 +81,10 @@ def login(request):
         user = auth.authenticate(username = username, password = password)
         if user is not None:
             auth.login(request,user)
-            return redirect('/dsahboard/')
+            resp = user_login_access(request)
+            if  resp:
+                return resp
+            return redirect('/dashboard/')
         else:
             template_name = 'login1.html'
             context       =  {'error' : 'Invalid username or password'}
@@ -53,18 +95,24 @@ def logout(request):
     return redirect('/')
 
 def users(request):
+    resp = user_login_access(request)
+    if  resp:
+        return resp
     template_name = "users.html"
     return render(request, template_name)
 
 def add_devise(request):
+    resp = user_login_access(request)
+    if  resp:
+        return resp
     context = {'message' : ''}
     if request.method == 'GET':
         template_name = "add_devise.html"
     elif request.method == 'POST':
         form = DeviseForm(request.POST)
         if form.is_valid():
-            UserFuncrtions.create_user(request.POST['devise_id'], request.POST['email'])
             form.save()
+            UserFuncrtions.create_user(request.POST['devise_id'], request.POST['email'])
             template_name = 'device_list.html'
             messages.success(request,"Devise added successfully")
             return redirect("/device-list/")
@@ -93,6 +141,9 @@ def add_devise(request):
     return render(request, template_name = template_name, context=context)
 
 def edit_devise(request, **kwargs):
+    resp = user_login_access(request)
+    if  resp:
+        return resp
     context = {'message' : ''}
     devise  = Devise.objects.get(pk = kwargs['pk'])
     devise.purchase_date = datetime.strptime(str(devise.purchase_date), '%Y-%m-%d')
@@ -109,11 +160,13 @@ def edit_devise(request, **kwargs):
             messages.success(request,"Devise updated successfully")
             return redirect("/device-list/")
         else:
-            print(request.POST)
             return render(request, 'add_devise.html', {'errors': form.errors, 'devise' : devise, })
     return render(request, template_name = template_name, context=context)
 
 def notifications(request, **kwargs):
+    resp = user_login_access(request)
+    if  resp:
+        return resp
     if (kwargs):
        data = ContactDetails.objects.get(pk = kwargs['pk'])
        data.status = False
@@ -128,6 +181,9 @@ def notifications(request, **kwargs):
     return render(request, template_name = template_name, context = context)
 
 def devise_list(request, **kwargs):
+    resp = user_login_access(request)
+    if  resp:
+        return resp
     if request.method == 'POST':
         pk = request.POST['pk']
         if pk:
@@ -148,6 +204,9 @@ def devise_list(request, **kwargs):
     return render(request, template_name = template_name, context = context)
 
 def api_list(request, **kwargs):
+    resp = user_login_access(request)
+    if  resp:
+        return resp
     n, p, k, name = '', '', '', ''
     if request.method == 'POST':
         # n = request.POST['n']
@@ -166,6 +225,9 @@ def api_list(request, **kwargs):
     return render(request, template_name = template_name, context = context)
 
 def devise_details(request, **kwargs):
+    resp = user_login_access(request)
+    if  resp:
+        return resp
     devise  = Devise.objects.get(pk = kwargs['pk'])
 
     # for i in range(56):
@@ -201,7 +263,7 @@ def devise_details(request, **kwargs):
         if api_thresholds:
             val       = api_thresholds.red - len(apis)
             used      = len(apis)
-            remaining = 0 if(val < 0) else api_thresholds.red - len(apis)
+            remaining = 0 if (val < 0) else api_thresholds.red - len(apis)
 
     context       = {
         'devise'        : devise,
@@ -214,6 +276,9 @@ def devise_details(request, **kwargs):
     return render(request, template_name = template_name, context=context)
 
 def api_overview(request, **kwargs):
+    resp = user_login_access(request)
+    if  resp:
+        return resp
     api = DeviseApis.objects.get(pk=kwargs['pk'])
     template_name = "api_details.html"
     context = {
@@ -226,6 +291,11 @@ class UpdateApi(UpdateView):
     model = DeviseApis
     fields = '__all__'
     template_name = 'updaet-api.html'
+
+    def __init__(self):
+        resp = user_login_access(self.request)
+        if  resp:
+            return resp
 
     def get_context_data(self, **kwargs):
         context = super(UpdateApi, self).get_context_data(**kwargs)
@@ -240,6 +310,11 @@ class APIThresholdForm(CreateView):
     template_name = 'api_threshold_form.html'
     model         = APICountThreshold
     fields        = '__all__'
+
+    def __init__(self):
+        resp = user_login_access(self.request)
+        if  resp:
+            return resp
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -257,6 +332,11 @@ class APIThresholdFormUpdate(UpdateView):
     model         = APICountThreshold
     fields        = '__all__'
 
+    def __init__(self):
+        resp = user_login_access(self.request)
+        if  resp:
+            return resp
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['pk'] = self.kwargs['devise_pk']
@@ -264,3 +344,26 @@ class APIThresholdFormUpdate(UpdateView):
 
     def get_success_url(self):
         return reverse('device-details', kwargs={'pk': self.kwargs['devise_pk']})
+
+def change_password(request, **kwargs):
+    resp = user_login_access(request)
+    if  resp:
+        return resp
+    template_name = 'change_password.html'
+    context       = dict()
+    devise        = Devise.objects.filter(pk=kwargs['pk']).first()
+    if request.method == 'GET':
+        context = {
+            'devise' : devise
+        }
+    elif request.method == 'POST':
+        UserFuncrtions.change_password(devise.devise_id, request.POST['password'])
+        messages.success(request, "password changes successfully")
+        return redirect('/device-list/')
+    return render(request, template_name = template_name, context=context)
+    
+def dashboard(request):
+    resp = user_login_access(request)
+    if  resp:
+        return resp
+    return redirect('/welcome/')

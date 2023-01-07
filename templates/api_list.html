@@ -88,7 +88,7 @@
     <h4 class="bg-success" style="width: 100%;">{{message}}</h4>
     <nav class="navbar fixed-top navbar-expand navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'dsahboard' %}">
+            <a class="navbar-brand" href="{% url 'dashboard' %}">
                 <h3 class="my-heading" style="font-size: 15px;">ArkaShine Innovations Pvt Ltd</h3>
             </a>
                 <ul class="navbar-nav ml-auto">
@@ -204,7 +204,7 @@
                                     <td>
                                         <ul class="list-inline mb-0">
                                             <li class="list-inline-item">
-                                                <a href="{% url 'api-overview' api.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-detail font-size-18"></i></a>
+                                                <a href="{% url 'api-overview' api.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Details" class="px-2 text-primary"><i class="bx bx-detail font-size-18"></i></a>
                                                 <a href="{% url 'api-edit' api.id %}" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
                                             </li>
                                         </ul>
