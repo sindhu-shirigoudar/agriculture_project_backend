@@ -314,48 +314,51 @@
 
 <!-- end slideshhow -->
 
-
-                    <div class="row mt-1">
-                        <div class="col-md-6 col-lg-6 col-xs-6 wow bounceInUp" data-wow-duration="1.4s">
-                            <video autoplay muted loop id="myVideo" style="height:300px; float: left;width:100%;" class="rounded">
-                                <source src="{%  static '/home/video1.mp4'%}" type="video/mp4">
-                                Your browser does not support HTML5 video.
-                            </video>
-                        </div> 
-                        <div class="col-md-6 col-lg-6 col-xs-6 wow bounceInUp" data-wow-duration="1.4s">
-                            <h5 class="title-overview wow fadeInUp" style="color: #4b2711;">explanation of product</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero magni eveniet cum, debitis assumenda quos consequatur sit ducimus, maiores esse tenetur saepe voluptatem dolorem adipisci voluptatum odit! Laudantium, accusantium beatae!</p>
-                        </div> 
-                        <script>
-                            var video = document.getElementById("myVideo");
-                            var btn = document.getElementById("myBtn");
-                            
-                            function myFunction() {
-                              if (video.paused) {
-                                video.play();
-                                btn.innerHTML = "Pause";
-                              } else {
-                                video.pause();
-                                btn.innerHTML = "Play";
-                              }
-                            }
-                            </script>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-md-5 col-lg-5 col-xs-5 wow bounceInUp" data-wow-duration="1.4s">
-                            <h5 class="title-overview wow fadeInUp" style="color: #4b2711;">product description</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero magni eveniet cum, debitis assumenda quos consequatur sit ducimus, maiores esse tenetur saepe voluptatem dolorem adipisci voluptatum odit! Laudantium, accusantium beatae!</p>
-                        </div> 
-                        <div class="col-md-7 col-lg-7 col-xs-7 wow bounceInUp " data-wow-duration="1.4s" >
-                            <video autoplay muted loop id="myVideo" style="height:300px; float: left;width:100%;" class="rounded"-5>
-                                <source src="{%  static '/home/video2.mp4'%}" type="video/mp4">
-                                Your browser does not support HTML5 video.
-                            </video>
-                        </div> 
-                    </div>
+                </div>
+            </div>
+        </section>
 
 
-        
+        <!-- VIDEOS -->
+        <div class="row mt-1">
+            <div class="col-md-7 col-lg-7 col-xs-7 wow bounceInUp" data-wow-duration="1.4s">
+                <video autoplay muted loop id="myVideo" style=" float: left;width:100%;" class="rounded">
+                    <source src="{%  static '/home/video1.mp4'%}" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                </video>
+            </div> 
+            <div class="col-md-5 col-lg-5 col-xs-5 wow bounceInUp" data-wow-duration="1.4s">
+                <h5 class="title-overview wow fadeInUp" style="color: #4b2711;">explanation of product</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero magni eveniet cum, debitis assumenda quos consequatur sit ducimus, maiores esse tenetur saepe voluptatem dolorem adipisci voluptatum odit! Laudantium, accusantium beatae!</p>
+            </div> 
+            <script>
+                var video = document.getElementById("myVideo");
+                var btn = document.getElementById("myBtn");
+                
+                function myFunction() {
+                  if (video.paused) {
+                    video.play();
+                    btn.innerHTML = "Pause";
+                  } else {
+                    video.pause();
+                    btn.innerHTML = "Play";
+                  }
+                }
+                </script>
+        </div>
+        <div class="row m-3">
+            <div class="col-md-5 col-lg-5 col-xs-5 wow bounceInUp" data-wow-duration="1.4s">
+                <h5 class="title-overview wow fadeInUp" style="color: #4b2711;">product description</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero magni eveniet cum, debitis assumenda quos consequatur sit ducimus, maiores esse tenetur saepe voluptatem dolorem adipisci voluptatum odit! Laudantium, accusantium beatae!</p>
+            </div> 
+            <div class="col-md-7 col-lg-7 col-xs-7 wow bounceInUp " data-wow-duration="1.4s" >
+                <video autoplay muted loop id="myVideo" style=" float: left;width:100%;" class="rounded"-5>
+                    <source src="{%  static '/home/video2.mp4'%}" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                </video>
+            </div> 
+        </div>
+        <!-- END VIDEOS -->
 
 
         <!-- partners -->
@@ -422,6 +425,15 @@
             </div>
 
         </section> -->
+
+        <center>
+            <div class="wow bounceInUp" data-wow-duration="1.4s" >
+                <video autoplay muted loop id="myVideo" style="height:370px; width:100%;" class="rounded"-5>
+                    <source src="{%  static '/home/video3.mp4'%}" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                </video>
+            </div> 
+        </center>
     </main>
 
   
