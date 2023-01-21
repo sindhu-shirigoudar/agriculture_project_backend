@@ -8,7 +8,7 @@ from .forms import ContactForm, DeviseForm
 from .models import ContactDetails, Devise, DeviseApis, APICountThreshold
 
 from . import UserFuncrtions
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, TemplateView
 from django.urls import reverse
 from django.contrib import messages #import messages
 from datetime import datetime
@@ -291,12 +291,7 @@ class UpdateApi(UpdateView):
     model = DeviseApis
     fields = '__all__'
     template_name = 'updaet-api.html'
-
-    def __init__(self):
-        resp = user_login_access(self.request)
-        if  resp:
-            return resp
-
+    
     def get_context_data(self, **kwargs):
         context = super(UpdateApi, self).get_context_data(**kwargs)
         pk = self.kwargs['pk']
@@ -310,11 +305,6 @@ class APIThresholdForm(CreateView):
     template_name = 'api_threshold_form.html'
     model         = APICountThreshold
     fields        = '__all__'
-
-    def __init__(self):
-        resp = user_login_access(self.request)
-        if  resp:
-            return resp
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -330,12 +320,7 @@ class APIThresholdForm(CreateView):
 class APIThresholdFormUpdate(UpdateView):
     template_name = 'api_threshold_form.html'
     model         = APICountThreshold
-    fields        = '__all__'
-
-    def __init__(self):
-        resp = user_login_access(self.request)
-        if  resp:
-            return resp
+    fields        = '__all__'   
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -361,9 +346,55 @@ def change_password(request, **kwargs):
         messages.success(request, "password changes successfully")
         return redirect('/device-list/')
     return render(request, template_name = template_name, context=context)
-    
+
+def get_dashboard_chart_data(id):
+    return_array = []
+    if (id):
+        apis = DeviseApis.objects.filter(device__pk=id).order_by('created_at').values()
+        date_list = []
+        for api in apis:
+            date1 = api['created_at']
+            date_list.append(date1.date())
+        if date_list:
+            date_list = [*set(date_list)]
+            for i in date_list:
+                return_array.append((f'{str(i.year)},{str(int(i.month) -1)},{str(i.day)}',len(apis.filter(created_at__date=i))))
+    return return_array, Devise.objects.get(pk = id) if id else ''
+
+
 def dashboard(request):
     resp = user_login_access(request)
     if  resp:
         return resp
     return redirect('/welcome/')
+
+class Dashboard(TemplateView):
+
+    template_name = "dashboard.html"
+
+    def get_context_data(self, **kwargs):
+        devise_name =''
+        if len(self.request.GET):
+            pk = self.request.GET['pk']
+            chart_date, devise_name = get_dashboard_chart_data(pk)
+        context = super().get_context_data(**kwargs)
+        devises = Devise.objects.all()
+        context = {
+            'devises' : devises,
+            'chart_data' : chart_date,
+            'devise_name' : devise_name
+        }
+
+        # apis = DeviseApis.objects.filter(created_at__year =. '2022').filter(created_at__month = '2022')
+        # apis.filter()
+        # if apis:
+        #     for api in apis:      
+        #         print (api.created_at.date())
+                # get all the data
+                # convert them to date and month
+                # apply count function on it
+        return context
+
+
+    
+    
