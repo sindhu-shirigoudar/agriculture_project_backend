@@ -369,11 +369,10 @@ def dashboard(request):
     return redirect('/welcome/')
 
 class Dashboard(TemplateView):
-
     template_name = "dashboard.html"
-
     def get_context_data(self, **kwargs):
         devise_name =''
+        chart_date = []
         if len(self.request.GET):
             pk = self.request.GET['pk']
             chart_date, devise_name = get_dashboard_chart_data(pk)
