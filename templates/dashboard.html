@@ -163,6 +163,7 @@
     
     var chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,  
+        
         title:{
             text:{% if devise_name %} "Api counts for {{devise_name}}" {% else %}"Please select devise to get data" {% endif %}
         },
@@ -173,9 +174,10 @@
             prefix: ""
         },
         data: [{
+            // type: "line",
             type: "splineArea",
             color: "rgba(54,158,173,.7)",
-            markerSize: 5,
+            markerSize: 10,
             // xValueFormatString: "YYYY",
             // yValueFormatString: "$#,##0.##",
             dataPoints: [

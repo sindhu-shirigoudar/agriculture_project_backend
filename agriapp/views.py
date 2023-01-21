@@ -360,6 +360,7 @@ def get_dashboard_chart_data(id):
             date_list.append(date1.date())
         if date_list:
             date_list = [*set(date_list)]
+            date_list.sort(reverse=True)
             for i in date_list:
                 return_array.append((f'{str(i.year)},{str(int(i.month) -1)},{str(i.day)}',len(apis.filter(created_at__date=i))))
     return return_array, Devise.objects.get(pk = id) if id else ''
