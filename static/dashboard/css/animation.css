@@ -3,14 +3,14 @@
 body .container {
   max-width: 100vw;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   grid-gap: 35px;
   margin: 0 auto;
   padding: 40px 0;
 }
 body .container .card {
   position: relative;
-  width: 254px;
+  width: 210px;
   height: 210px;
   margin: 0 auto;
   background: #000;
@@ -87,4 +87,8 @@ body .container .card:nth-child(4) .face.face2 {
 body .container .card:nth-child(5) .face.face2 {
   background-image: linear-gradient(40deg, #00fffc 0%, #fc00ff 45%, #fffc00 100%);
   border-radius: 15px;
+}
+
+canvas {
+  background-color: #ffffff7d;
 }
