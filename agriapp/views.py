@@ -378,10 +378,16 @@ class Dashboard(TemplateView):
             chart_date, devise_name = get_dashboard_chart_data(pk)
         context = super().get_context_data(**kwargs)
         devises = Devise.objects.all()
+        notifications_all = ContactDetails.objects.all()
         context = {
             'devises' : devises,
             'chart_data' : chart_date,
-            'devise_name' : devise_name
+            'devise_name' : devise_name,
+            'devise_counts' : len(devises),
+            'api_counts' : len(DeviseApis.objects.all()),
+            'notification_counts' : len(ContactDetails.objects.all()),
+            'notification_active'   : notifications_all.filter(status=True),
+            'notification_inactive' : notifications_all.filter(status=False),
         }
 
         # apis = DeviseApis.objects.filter(created_at__year =. '2022').filter(created_at__month = '2022')

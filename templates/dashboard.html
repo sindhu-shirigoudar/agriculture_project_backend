@@ -4,7 +4,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="{% static 'dashboard/dashboard.css' %}">
 <link rel="stylesheet" href="{% static 'dashboard/css/animation.css' %}">
-<link rel="stylesheet" href="{% static 'dashboard/css/buttons.css' %}">
+<!-- <link rel="stylesheet" href="{% static 'dashboard/css/buttons.css' %}"> -->
 <!-- <script src="{% static 'dashboard/js/animation.js' %}"></script> -->
 <!-- <script src="{% static 'dashboard/js/buttons.js' %}"></script> -->
 
@@ -34,25 +34,94 @@
         </div>
     </nav>
   <!-- end navbar -->   
-        <div style="margin-top:100px;float: left;width: 100%;">
+        <!-- <div style="margin-top:100px;float: left;width: 100%;">
             <button class="rounded bg-dark text-white" id="dashboard-buttons" style="width: 50%;float: left;" onclick="window.location={% url 'device-list' %}">Devises</button>
             <button class="rounded bg-dark text-white" id="dashboard-buttons" style="width: 50%;float: left;" onclick="window.location={% url 'map' %}">Map</button>
             <button class="rounded bg-dark text-white" id="dashboard-buttons" style="width: 50%;float: left;" onclick="window.location={% url 'notifications' %}">Notifications</button>
             <button class="rounded bg-dark text-white" id="dashboard-buttons" style="width: 50%;float: left;" onclick="window.location={% url 'add-devise' %}">Add devise</button>
-        </div>
+        </div> -->
 
+        <!-- devise counts -->
+        <div class="container" style="margin-top:100px;">
+
+            <div class="card">
+              <div class="face face1">
+                <div class="content">
+                  <span class="stars"></span>
+                  <h2 class="java"><a href="{% url 'device-list' %}">Devises</h2>
+                  <p class="java">Total devises currently in used : {{devise_counts}}.</p></a>
+                </div>
+              </div>
+              <div class="face face2">
+                <h4>Devises</h4>
+              </div>
+            </div>
+          
+            <div class="card">
+              <div class="face face1">
+                <div class="content">
+                  <span class="stars"></span>
+                  <h2 class="python"><a href="{% url 'add-devise' %}">Add devise</h2>
+                  <p class="python">Click to add devise.</p></a>
+                </div>
+              </div>
+              <div class="face face2">
+                <h4>Add devise</h4>
+              </div>
+            </div>
+          
+            <div class="card">
+              <div class="face face1">
+                <div class="content">
+                  <span class="stars"></span>
+                  <h2 class="java"><a href="{% url 'map' %}">Map</h2>
+                  <p class="java">Click to check devices locations.</p></a>
+                </div>
+              </div>
+              <div class="face face2">
+                <h4>Map</h4>
+              </div>
+            </div>
+          
+            <div class="card">
+              <div class="face face1">
+                <div class="content">
+                  <span class="stars"></span>
+                  <h2 class="cSharp"><a href="{% url 'notifications' %}"></a> Notifications</h2>
+                  <p class="cSharp">Total notifications : {{notification_counts}}.</p>
+                </div>
+              </div>
+              <div class="face face2">
+                <h4>Notifications</h4>
+              </div>
+            </div>
+
+            <div class="card">
+                <div class="face face1">
+                  <div class="content">
+                    <span class="stars"></span>
+                    <h2 class="cSharp">API calls</h2>
+                    <p class="cSharp">Total API called till date : {{api_counts}}.</p>
+                  </div>
+                </div>
+                <div class="face face2">
+                  <h4>API calls</h4>
+                </div>
+              </div>
+          </div>
+        <!-- end devise counts -->
 
         <div class="row">
             <div class="col d-flex justify-content-center">
-                <form class="" style="float: right;width: 300px;"> 
-                    <label>Select devise to view the API call counts</label>
+                <form class="" style="width: 500px;"> 
+                    <h4 >Select devise to view the API call counts</h4>
                     <select class="form-control select2" name="pk">
                         <option value=""> </option>
                         {% for devise in devises %}
                             <option value="{{devise.pk}}">{{devise.name}}</option> 
                         {% endfor %}
                     </select>
-                    <button class="btn btn-primary btn-sm btn-icon-text mt-1">Filter</button>
+                    <button class="btn btn-primary btn-sm btn-icon-text mt-1"  style="width: 500px;">Filter</button>
                 </form>
             </div>
         </div>
@@ -137,7 +206,8 @@
     
     }
     </script>
-
+{% if devise_name %}
 <div id="chartContainer" style="background-color: #ffffff7d;height: 300px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+{% endif %}
 </body>
