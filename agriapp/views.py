@@ -152,6 +152,9 @@ def edit_devise(request, **kwargs):
         template_name = "add_devise.html"
         context       = {
             'devise' : devise,
+            'warrenty' : str(devise.warrenty.date()),
+            'purchase_date' : str(devise.purchase_date.date()),
+            'time_of_sale' : str(devise.time_of_sale),
         }
     elif request.method == 'POST':
         form = DeviseForm(request.POST or None, instance=devise)
