@@ -1,5 +1,5 @@
 
-from .models import DeviseApis, Devise
+from .models import DeviseApis, Devise, DeviseLocation
 def get_all_states():
     from countryinfo import CountryInfo
     name    = "India"
@@ -15,6 +15,11 @@ def is_coordinates_of_the_state(latitude, longitude, state):
     location = geolocator.reverse(f"{latitude},{longitude}")
     return True if location.raw['address']['state'] == state else False
 
+def get_devises_for_state(state):
+    locations = DeviseLocation.objects.all()
+    return_devise_list = [location.devise for location in locations if is_coordinates_of_the_state(location.latitude, location.longitude, state)]
+    return return_devise_list
+
 def get_dashboard_chart_data(id, year, state):
     return_array = []
     name = 'ALL'
@@ -26,6 +31,10 @@ def get_dashboard_chart_data(id, year, state):
             apis = DeviseApis.objects.filter(device__pk=id)
         if year:
             apis = apis.filter(created_at__year=year)
+        if state:
+            devises_list = get_devises_for_state(state)
+            if devises_list:
+                apis = apis.filter(device__in=devises_list)
 
     if (apis):
         apis =apis.order_by('created_at').values()
@@ -38,7 +47,7 @@ def get_dashboard_chart_data(id, year, state):
             date_list.sort(reverse=True)
             for i in date_list:
                 return_array.append((f'{str(i.year)},{str(int(i.month) -1)},{str(i.day)}',len(apis.filter(created_at__date=i))))
-        return return_array, name
+    return return_array, name
 
 def get_years_for_filter():
     return_year= list()
