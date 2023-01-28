@@ -15,6 +15,7 @@ from datetime import datetime
 from django.views.generic import CreateView, UpdateView
 from map.views import get_marker_color
 from django.contrib.auth.models import User
+from .devise_details import *
 
 # Create your views here.
 
@@ -51,8 +52,6 @@ def user_login_access(request):
         request.session['used']           = used
         request.session['color']          = get_marker_color(devise)
         request.session['remaining']      = remaining
-
-        print(used, remaining, api_thresholds,'------------')
 
         return redirect('/devise_user_details/')
 
@@ -350,22 +349,6 @@ def change_password(request, **kwargs):
         return redirect('/device-list/')
     return render(request, template_name = template_name, context=context)
 
-def get_dashboard_chart_data(id):
-    return_array = []
-    if (id):
-        apis = DeviseApis.objects.filter(device__pk=id).order_by('created_at').values()
-        date_list = []
-        for api in apis:
-            date1 = api['created_at']
-            date_list.append(date1.date())
-        if date_list:
-            date_list = [*set(date_list)]
-            date_list.sort(reverse=True)
-            for i in date_list:
-                return_array.append((f'{str(i.year)},{str(int(i.month) -1)},{str(i.day)}',len(apis.filter(created_at__date=i))))
-    return return_array, Devise.objects.get(pk = id) if id else ''
-
-
 def dashboard(request):
     resp = user_login_access(request)
     if  resp:
@@ -375,23 +358,33 @@ def dashboard(request):
 class Dashboard(TemplateView):
     template_name = "dashboard.html"
     def get_context_data(self, **kwargs):
-        devise_name =''
-        chart_date = []
+        devise_name = ''
+        chart_date  = []
+        pk          = ''
+        year        = ''
+        state       = ''
         if len(self.request.GET):
-            pk = self.request.GET['pk']
-            chart_date, devise_name = get_dashboard_chart_data(pk)
-        context = super().get_context_data(**kwargs)
-        devises = Devise.objects.all()
+            pk    = self.request.GET['pk']
+            year  = self.request.GET['year']
+            state = self.request.GET['state']
+        chart_date, devise_name = get_dashboard_chart_data(pk, year, state)
+        context           = super().get_context_data(**kwargs)
+        devises           = Devise.objects.all()
         notifications_all = ContactDetails.objects.all()
+        years             = list(set(get_years_for_filter()))
+        states            = get_all_states()
+        years.sort()
         context = {
-            'devises' : devises,
-            'chart_data' : chart_date,
-            'devise_name' : devise_name,
-            'devise_counts' : len(devises),
-            'api_counts' : len(DeviseApis.objects.all()),
-            'notification_counts' : len(ContactDetails.objects.all()),
+            'devises'               : devises,
+            'chart_data'            : chart_date,
+            'devise_name'           : devise_name,
+            'devise_counts'         : len(devises),
+            'api_counts'            : len(DeviseApis.objects.all()),
+            'notification_counts'   : len(ContactDetails.objects.all()),
             'notification_active'   : notifications_all.filter(status=True),
             'notification_inactive' : notifications_all.filter(status=False),
+            'years'                 : years,
+            'states'                : states,
         }
 
         # apis = DeviseApis.objects.filter(created_at__year =. '2022').filter(created_at__month = '2022')
@@ -403,7 +396,3 @@ class Dashboard(TemplateView):
                 # convert them to date and month
                 # apply count function on it
         return context
-
-
-    
-    

@@ -111,17 +111,31 @@
           </div>
         <!-- end devise counts -->
 
-        <div class="row">
+        <div class="row m-1">
             <div class="col d-flex justify-content-center">
-                <form class="" style="width: 500px;"> 
+                <form class="" style="width: 100%;"> 
                     <h4 >Select devise to view the API call counts</h4>
-                    <select class="form-control select2" name="pk">
-                        <option value=""> </option>
+                    <select class="form-control select2" name="pk" style="width: 33%; float: left;">
+                        <option value="">Selct devise</option>
                         {% for devise in devises %}
                             <option value="{{devise.pk}}">{{devise.name}}</option> 
                         {% endfor %}
                     </select>
-                    <button class="btn btn-primary btn-sm btn-icon-text mt-1"  style="width: 500px;">Filter</button>
+                    <select class="form-control select2" name="year" style="width: 33%;float: left;">
+                      <option value="">Select year</option>
+                      {% for year in years %}
+                          <option value="{{year}}">{{year}}</option> 
+                      {% endfor %}
+                  </select>
+                  <select class="form-control select2" name="state" style="width: 33%;float: left;">
+                    <option value="">Select state</option>
+                    {% for state in states %}
+                        <option value="{{state}}">{{state}}</option> 
+                    {% endfor %}
+                  </select>
+                  <center>
+                    <button class="btn btn-primary btn-sm btn-icon-text mt-1"  style="width: 300px;">Filter</button>
+                  </center>
                 </form>
             </div>
         </div>
