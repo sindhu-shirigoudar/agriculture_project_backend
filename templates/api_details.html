@@ -12,6 +12,11 @@
     <script src="{% static '/api_details/js/recomended.js' %}"></script>  
 </header>
 
+<style>
+  body{
+        background: linear-gradient(to right, #fc00ff 0%, #00fffc 45%, #fffc00 100%);
+        }
+</style>
 
 <!------ Include the above in your HEAD tag ---------->
  <!-- navbar -->
@@ -50,9 +55,9 @@
 <a class=" btn btn-primary btn-sm btn-icon-text menu__link" href="#popup1">View chart</a>
 <a class=" btn btn-primary btn-sm btn-icon-text menu__link" href="#recomended-crops">View Recomended crops</a>
 <a class="btn btn-primary btn-sm btn-icon-text" href="{% url 'api-list' api.device.pk %}" >Back</a>
-<div class="row mt-2">
+<div class="row mt-2 m-1">
   <div class="col-md-6">
-    <div class="card mb-4 mb-md-0">
+    <div class="card mb-4 mb-md-0" style="background: #a97e7e94; color: white;">
       <div class="card-body">
         <p class="mb-4"><span class="text-primary font-italic me-1">API</span> Parameters</p>
         <hr> 
@@ -105,7 +110,7 @@
     </div>
   </div>
   <div class="col-md-6">
-    <div class="card mb-4 mb-md-0">
+    <div class="card mb-4 mb-md-0"  style="background: #a97e7e94; color: white;">
       <div class="card-body">
        
         

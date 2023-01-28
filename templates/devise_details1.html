@@ -6,11 +6,17 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
     <link rel="stylesheet" href="{% static 'devise/devise_details1.css' %}">
-</header>
+    <link rel="stylesheet" href="{% static '/home/css/popup.css' %}" type="text/css">
+  </header>
 
 
 <!------ Include the above in your HEAD tag ---------->
  <!-- navbar -->
+ <style>
+  body {
+    background: linear-gradient(40deg, #fc00ff 0%, #00fffc 45%, #fffc00 100%);
+  }
+ </style>
  <h4 class="bg-success" style="width: 100%;">{{message}}</h4>
  <nav class="navbar fixed-top navbar-expand navbar-dark" style="background-color: #4b2711;">
      <div class="container-fluid">
@@ -41,7 +47,7 @@
 {% endfor %}
 {% endif %}
 
-<section style="background-color: #eee;" style="margin-top: 100px;">
+<section style="margin-top: 100px;">
     <!-- <div class="container py-5"> -->
     <!--  <div class="row">
         <div class="col">
@@ -56,44 +62,43 @@
       </div> -->
   
       <div class="row mt-5 ml-1 mr-1">
-        <div class="col-lg-4" >
-          <div class="card mb-4" style="border-radius: 10%;">
+        <div class="col-lg-4">
+          <div class="card mb-4" style="border-radius: 10%;background-color: #a97e7e94; color: white;">
             <div class="card-body text-center">
               <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar"
                 class="rounded-circle img-fluid" style="width: 150px;">
               <h5 class="my-3">{{devise.name}}</h5>
-              <p class="text-muted mb-1">{{devise.phone}}</p>
-              <p class="text-muted mb-4">{{devise.email}}</p>
+              <p class="mb-1">{{devise.phone}}</p>
+              <p class="mb-4">{{devise.email}}</p>
               <div class="d-flex justify-content-center mb-2">
                 <a href="{% url 'edit-devise' devise.pk %}" class="btn btn-primary">Edit</a>
                 <!-- <button type="button" class="btn btn-outline-primary ms-1">Message</button> -->
               </div>
             </div>
           </div>
-          <div class="card mb-4 mb-lg-0">
-            <div class="card-body p-0">
-              <ul class="list-group list-group-flush rounded-3" >
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+          <div class="card mb-4 mb-lg-0" style="background: transparent;">
+            <div class="card-body p-0" style="background: transparent;">
+              <ul class="list-group list-group-flush rounded-3" style="background: transparent;">
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3" style="background-color: #a97e7e94; color: white;">
                   <i class="fas fa-globe fa-lg text-warning"></i>
                   <p class="mb-0">Devise usage ({{api_usage}})</p>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3" style="background-color: #a97e7e94; color: white;">
                   <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                  <p class="mb-0"><a href="{% url 'map-devise' devise.pk %}">Devise current location</a></p>
+                  <p class="mb-0"><a href="{% url 'map-devise' devise.pk %}" style="color: white;">Devise current location</a></p>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3" style="background-color: #a97e7e94; color: white;">
                   <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                  <p class="mb-0"><a href="{% url 'api-list' devise.pk %}">Devise API calls</a></p>
+                  <p class="mb-0"><a href="{% url 'api-list' devise.pk %}" style="color:white">Devise API calls</a></p>
                 </li>
 
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3" style="background-color: #a97e7e94; color: white;">
                   {% if api_threshold %}
 
-                    <p class="mb-0"><a href="{% url 'update-api-threshold' pk=api_threshold.pk devise_pk=devise.pk %}">Update API Thresholds</a></p>
+                    <p class="mb-0"><a href="{% url 'update-api-threshold' pk=api_threshold.pk devise_pk=devise.pk %}" style="color: white;">Update API Thresholds</a><br><a href="#popup1" style="color: white;">View chart</a></p>
                     <br>
-                    <ul>
-                      <li style="color: red;">
+                    <ul style="background: transparent;">
+                      <li style="color: red; background: transparent;">
                         {{api_threshold.red}} >= 100 RED
                       </li>
                       <li style="color: orange;">
@@ -113,10 +118,10 @@
 
 
 
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+              <!-- <li class="list-group-item d-flex justify-content-between align-items-center p-3"> -->
                 <!-- pie chart -->
               <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-              <div id="myChart" style="width:100%; max-width:500px; height:150px;"></div>
+              <!-- <div id="myChart" style="width:100%; max-width:500px; height:190px;"></div> -->
               <script>
                 google.charts.load('current', {'packages':['corechart']});
                 google.charts.setOnLoadCallback(drawChart);
@@ -142,7 +147,7 @@
                 }
                 </script>
                 <!-- end pie chart -->
-              </li>
+              <!-- </li> -->
 
             </ul>
           {% else %}
@@ -153,14 +158,14 @@
           </div>
         </div>
         <div class="col-lg-8">
-          <div class="card mb-4" style="border-radius: 5%;">
+          <div class="card mb-4" style="border-radius: 5%;background-color: #a97e7e94; color: white;" >
             <div class="card-body">
               <div class="row">
                 <div class="col-sm-3">
                   <p class="mb-0">Full Name</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{devise.name}}</p>
+                  <p class="mb-0">{{devise.name}}</p>
                 </div>
               </div>
               <hr>
@@ -169,7 +174,7 @@
                   <p class="mb-0">Email</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{devise.email}}</p>
+                  <p class="mb-0">{{devise.email}}</p>
                 </div>
               </div>
               <hr>
@@ -178,7 +183,7 @@
                   <p class="mb-0">Phone</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{devise.phone}}</p>
+                  <p class="mb-0">{{devise.phone}}</p>
                 </div>
               </div>
               <hr>
@@ -187,7 +192,7 @@
                   <p class="mb-0">Mobile</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{devise.phone}}</p>
+                  <p class="mb-0">{{devise.phone}}</p>
                 </div>
               </div>
               <hr>
@@ -196,7 +201,7 @@
                   <p class="mb-0">Address1</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{devise.address1}}</p>
+                  <p class="mb-0">{{devise.address1}}</p>
                 </div>
               </div>
               <hr>
@@ -205,7 +210,7 @@
                   <p class="mb-0">Address2</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{devise.address2}}</p>
+                  <p class="mb-0">{{devise.address2}}</p>
                 </div>
               </div>
               <hr>
@@ -214,7 +219,7 @@
                   <p class="mb-0">devise_id</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{devise.devise_id}}</p>
+                  <p class="mb-0">{{devise.devise_id}}</p>
                 </div>
               </div>
               <hr>
@@ -223,7 +228,7 @@
                   <p class="mb-0">setial_no</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{devise.setial_no}}</p>
+                  <p class="mb-0">{{devise.setial_no}}</p>
                 </div>
               </div>
               <hr>
@@ -232,7 +237,7 @@
                   <p class="mb-0">chipset_no</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{devise.chipset_no}}</p>
+                  <p class="mb-0">{{devise.chipset_no}}</p>
                 </div>
               </div>
               <hr>
@@ -241,7 +246,7 @@
                   <p class="mb-0">purchase_date</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{devise.purchase_date}}</p>
+                  <p class="mb-0">{{devise.purchase_date}}</p>
                 </div>
               </div>
               <hr>
@@ -250,7 +255,7 @@
                   <p class="mb-0">time_of_sale</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{devise.time_of_sale}}</p>
+                  <p class="mb-0">{{devise.time_of_sale}}</p>
                 </div>
               </div>
               <hr>
@@ -259,7 +264,7 @@
                   <p class="mb-0">warrenty</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{devise.warrenty}}</p>
+                  <p class="mb-0">{{devise.warrenty}}</p>
                 </div>
               </div>
               <hr>
@@ -268,7 +273,7 @@
                   <p class="mb-0">amount_paid</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{devise.amount_paid}}</p>
+                  <p class="mb-0">{{devise.amount_paid}}</p>
                 </div>
               </div>
               <hr>
@@ -277,7 +282,7 @@
                   <p class="mb-0">balance_amount</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{devise.balance_amount}}</p>
+                  <p class="mb-0">{{devise.balance_amount}}</p>
                 </div>
               </div>
             </div>
@@ -285,4 +290,24 @@
         </div>
       </div>
     <!-- </div> -->
+
+    <!-- popup -->
+    <div id="popup1" class="overlay1">
+      <div class="popup" style="width: 50%;">
+          <center>
+            <a class="close" href="#">&times;</a>
+            <div class="page-content page-container mt-5" id="page-content">
+              <div class="padding">
+                  <div class="row">
+                      <div class="container-fluid d-flex justify-content-center">
+                          <div class="col-sm-8 col-md-6">
+                            <div id="myChart" style="width:100%; max-width:500px; height:190px;"></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          </center>
+      </div>
+    </div>
   </section>
