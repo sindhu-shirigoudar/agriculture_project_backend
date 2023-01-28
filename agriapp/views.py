@@ -390,7 +390,7 @@ class Dashboard(TemplateView):
             pk    = self.request.GET['pk']
             year  = self.request.GET['year']
             state = self.request.GET['state']
-        chart_date, devise_name = get_dashboard_chart_data(pk, year, state)
+            chart_date, devise_name = get_dashboard_chart_data(pk, year, state)
         context           = super().get_context_data(**kwargs)
         devises           = Devise.objects.all()
         notifications_all = ContactDetails.objects.all()
