@@ -14,20 +14,21 @@ class ContactDetails(models.Model):
         return self.name
 
 class Devise(models.Model):
-    name          = models.CharField(max_length=255)
-    setial_no     = models.CharField(max_length=255, unique=True)
-    devise_id     = models.CharField(max_length=255, unique=True) #devise id or user name
-    chipset_no    = models.CharField(max_length=255, unique=True)
-    email         = models.EmailField()
-    phone         = models.CharField(max_length=255)
-    address1      = models.CharField(max_length=255)
-    address2      = models.CharField(max_length=255)
-    purchase_date = models.DateField()
-    time_of_sale  = models.TimeField()
-    warrenty      = models.DateField()
-    amount_paid   = models.FloatField()
-    balance_amount= models.FloatField(default=0)
-    created_at    = models.DateTimeField(auto_now_add=True)
+    name           = models.CharField(max_length=255)
+    setial_no      = models.CharField(max_length=255, unique=True)
+    devise_id      = models.CharField(max_length=255, unique=True) #devise id or user name
+    chipset_no     = models.CharField(max_length=255, unique=True)
+    email          = models.EmailField()
+    phone          = models.CharField(max_length=255)
+    address1       = models.CharField(max_length=255)
+    address2       = models.CharField(max_length=255)
+    purchase_date  = models.DateField()
+    time_of_sale   = models.TimeField()
+    warrenty       = models.DateField()
+    amount_paid    = models.FloatField()
+    balance_amount = models.FloatField(default=0)
+    land           = models.FloatField(default=0.0)
+    created_at     = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name + ' ' + self.devise_id

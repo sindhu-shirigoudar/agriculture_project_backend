@@ -26,12 +26,14 @@
              <h3 class="my-heading" style="font-size: 15px;">ArkaShine Innovations Pvt Ltd</h3>
          </a>
              <ul class="navbar-nav ml-auto">
+              {% if request.user.is_staff %}
                  <li class="nav-item">
                      <a class="nav-link" href="{% url 'notifications' %}">Notifications</a>
                  </li>
                  <li class="nav-item">
                      <a class="nav-link" href="{% url 'add-devise' %}">Add devise</a>
                  </li>
+              {% endif %}
                   <li class="nav-item">
                      <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                  </li>
@@ -51,7 +53,9 @@
     </div>
 {% endfor %}
 {% endif %}
+{% if request.user.is_staff %}
 <a class="btn btn-primary btn-sm btn-icon-text" href="{% url 'api-edit' api.device.id %}" >Edit</a> 
+{% endif %}
 <a class=" btn btn-primary btn-sm btn-icon-text menu__link" href="#popup1">View chart</a>
 <a class=" btn btn-primary btn-sm btn-icon-text menu__link" href="#recomended-crops">View Recomended crops</a>
 <a class="btn btn-primary btn-sm btn-icon-text" href="{% url 'api-list' api.device.pk %}" >Back</a>

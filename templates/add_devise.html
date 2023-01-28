@@ -202,6 +202,11 @@
                 {% endif %}
                 <label class="form-label">Warrenty</label>
                 <input type="date" class="form-control" name="warrenty" required value="{{ warrenty }}">
+                {% if field_errors.land %}
+                  <span style="color: red;"> {{ field_errors.land }}</span>
+                {% endif %}
+                <label class="form-label">Land</label>
+                <input type="input" class="form-control" name="land" required value="{{ devise.land }}">
             </div>
             <script>
                 

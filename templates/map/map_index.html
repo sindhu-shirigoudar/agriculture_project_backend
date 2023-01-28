@@ -146,12 +146,15 @@
                 <h3 class="my-heading" style="font-size: 15px;">ArkaShine Innovations Pvt Ltd</h3>
             </a>
                 <ul class="navbar-nav ml-auto">
+                    {% if request.user.is_staff %}
+
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'notifications' %}">Notifications</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'add-devise' %}">Add devise</a>
                     </li>
+                    {% endif %}
                      <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                     </li>
@@ -236,9 +239,10 @@
     }
     $(document).ready(function(e) { initialize() });
     </script>
+    {% if request.user.is_staff %}
     <center  >
         <form class="col-md-4" style="margin-top: 100px;" method="POST"> {% csrf_token %}
-            <label>Search devise</label>
+            <label>Search devise {{ request.user.is_staff}}</label>
             <select class="form-control select2" name="pk">
                 <option value=""> All</option>
                 {% for devise in filter_devise_list %}
@@ -248,6 +252,7 @@
             <button class="btn btn-primary btn-sm btn-icon-text mt-1">Filter</button>
         </form>
     </center>
+    {% endif %}
 
    
 

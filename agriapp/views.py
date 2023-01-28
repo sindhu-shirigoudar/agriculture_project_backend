@@ -42,6 +42,7 @@ def user_login_access(request):
         request.session['phone']          = devise.phone
         request.session['address1']       = devise.address1
         request.session['address2']       = devise.address2
+        request.session['land']           = devise.land
         request.session['purchase_date']  = str(devise.purchase_date)
         request.session['time_of_sale']   = str(devise.time_of_sale)
         request.session['warrenty']       = str(devise.warrenty)
@@ -135,6 +136,7 @@ def add_devise(request):
                 'amount_paid'    : request.POST['amount_paid'],
                 'balance_amount' : request.POST['balance_amount'],
                 'phone'          : request.POST['phone'],
+                'land'           : request.POST['land'],
             }
             return render(request, 'add_devise.html', {'devise' : default_values, 'field_errors' : field_errors})
     return render(request, template_name = template_name, context=context)
@@ -143,17 +145,17 @@ def edit_devise(request, **kwargs):
     resp = user_login_access(request)
     if  resp:
         return resp
-    context = {'message' : ''}
-    devise  = Devise.objects.get(pk = kwargs['pk'])
+    context              = {'message' : ''}
+    devise               = Devise.objects.get(pk = kwargs['pk'])
     devise.purchase_date = datetime.strptime(str(devise.purchase_date), '%Y-%m-%d')
-    devise.warrenty = datetime.strptime(str(devise.warrenty), '%Y-%m-%d')
+    devise.warrenty      = datetime.strptime(str(devise.warrenty), '%Y-%m-%d')
     if request.method == 'GET':
         template_name = "add_devise.html"
         context       = {
-            'devise' : devise,
-            'warrenty' : str(devise.warrenty.date()),
+            'devise'        : devise,
+            'warrenty'      : str(devise.warrenty.date()),
             'purchase_date' : str(devise.purchase_date.date()),
-            'time_of_sale' : str(devise.time_of_sale),
+            'time_of_sale'  : str(devise.time_of_sale),
         }
     elif request.method == 'POST':
         form = DeviseForm(request.POST or None, instance=devise)
@@ -162,7 +164,28 @@ def edit_devise(request, **kwargs):
             messages.success(request,"Devise updated successfully")
             return redirect("/device-list/")
         else:
-            return render(request, 'add_devise.html', {'errors': form.errors, 'devise' : devise, })
+            errors  = form.errors
+            field_errors = dict()
+            for error in errors:
+                field_errors[error] = errors[error]
+
+            default_values = {
+                'name'           : request.POST['name'],
+                'devise_id'      : request.POST['devise_id'],
+                'setial_no'      : request.POST['setial_no'],
+                'chipset_no'     : request.POST['chipset_no'],
+                'email'          : request.POST['email'],
+                'address1'       : request.POST['address1'],
+                'address2'       : request.POST['address2'],
+                'purchase_date'  : request.POST['purchase_date'],
+                'time_of_sale'   : request.POST['time_of_sale'],
+                'warrenty'       : request.POST['warrenty'],
+                'amount_paid'    : request.POST['amount_paid'],
+                'balance_amount' : request.POST['balance_amount'],
+                'phone'          : request.POST['phone'],
+                'land'           : request.POST['land'],
+            }
+            return render(request, 'add_devise.html', {'field_errors': field_errors, 'devise' : devise, })
     return render(request, template_name = template_name, context=context)
 
 def notifications(request, **kwargs):
@@ -206,9 +229,9 @@ def devise_list(request, **kwargs):
     return render(request, template_name = template_name, context = context)
 
 def api_list(request, **kwargs):
-    resp = user_login_access(request)
-    if  resp:
-        return resp
+    # resp = user_login_access(request)
+    # if  resp:
+    #     return resp
     n, p, k, name = '', '', '', ''
     if request.method == 'POST':
         # n = request.POST['n']
@@ -278,9 +301,9 @@ def devise_details(request, **kwargs):
     return render(request, template_name = template_name, context=context)
 
 def api_overview(request, **kwargs):
-    resp = user_login_access(request)
-    if  resp:
-        return resp
+    # resp = user_login_access(request)
+    # if  resp:
+    #     return resp
     api = DeviseApis.objects.get(pk=kwargs['pk'])
     template_name = "api_details.html"
     context = {

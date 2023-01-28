@@ -1,11 +1,24 @@
 
 from .models import DeviseApis, Devise, DeviseLocation
 def get_all_states():
-    from countryinfo import CountryInfo
-    name    = "India"
-    country = CountryInfo(name)
-    data    = country.info()
-    return data["provinces"]
+    # Import the required library
+    from geopy.geocoders import Nominatim
+    return_states = []
+    # Initialize Nominatim API
+    geolocator = Nominatim(user_agent="MyApp")
+    locations = DeviseLocation.objects.all()
+    for location in locations:
+        location = geolocator.reverse(f"{location.latitude},{location.longitude}")
+        return_states.append(location.raw['address']['state'])
+    return_states = list(set(return_states))
+    return_states.sort()
+    return return_states
+
+    # from countryinfo import CountryInfo
+    # name    = "India"
+    # country = CountryInfo(name)
+    # data    = country.info()
+    # return data["provinces"]
 
 def is_coordinates_of_the_state(latitude, longitude, state):
     # Import the required library
