@@ -59,6 +59,8 @@
 <a class=" btn btn-primary btn-sm btn-icon-text menu__link" href="#popup1">View chart</a>
 <a class=" btn btn-primary btn-sm btn-icon-text menu__link" href="#recomended-crops">View Recomended crops</a>
 <a class="btn btn-primary btn-sm btn-icon-text" href="{% url 'api-list' api.device.pk %}" >Back</a>
+<a class="btn btn-primary btn-sm btn-icon-text" href="{% url 'download-api-response-pdf' api.pk %}" >Download PDF</a>
+<a class="btn btn-primary btn-sm btn-icon-text" href="{% url 'download-api-response-csv' api.pk %}" >Download CSV</a>
 <div class="row mt-2 m-1">
   <div class="col-md-6">
     <div class="card mb-4 mb-md-0" style="background: #a97e7e94; color: white;">

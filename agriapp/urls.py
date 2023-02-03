@@ -30,5 +30,7 @@ urlpatterns = [
     path('notifications/<int:pk>/', login_required(v.notifications), name = "notifications"),
     path('add-api-threshold/<int:pk>/', APIThresholdForm.as_view(), name = "add-api-threshold"),
     path('update-api-threshold/<int:pk>/<int:devise_pk>/', APIThresholdFormUpdate.as_view(), name = "update-api-threshold"),
+    path('download_api_response_pdf/<int:pk>/', login_required(v.download_api_response_pdf), name = "download-api-response-pdf"),
+    path('download_api_response_csv/<int:pk>/', login_required(v.download_api_response_csv), name = "download-api-response-csv"),
 ]
 

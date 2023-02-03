@@ -409,13 +409,115 @@ class Dashboard(TemplateView):
             'years'                 : years,
             'states'                : states,
         }
-
-        # apis = DeviseApis.objects.filter(created_at__year =. '2022').filter(created_at__month = '2022')
-        # apis.filter()
-        # if apis:
-        #     for api in apis:      
-        #         print (api.created_at.date())
-                # get all the data
-                # convert them to date and month
-                # apply count function on it
         return context
+
+
+# import io
+# from django.http import FileResponse
+# from reportlab.pdfgen import canvas
+# from reportlab.platypus import Paragraph, Table
+# from reportlab.lib.pagesizes import A4, mm, inch
+# from reportlab.lib.styles import getSampleStyleSheet
+# def some_view(request, **kwargs):
+    # Create a file-like buffer to receive PDF data.
+    # buffer = io.BytesIO()
+
+    # # Create the PDF object, using the buffer as its "file."
+    # p = canvas.Canvas(buffer)
+
+    # # Draw things on the PDF. Here's where the PDF generation happens.
+    # # See the ReportLab documentation for the full list of functionality.
+    # p.drawString(0, 100,  """hello \n world""")
+
+    # # Close the PDF object cleanly, and we're done.
+    # p.showPage()
+    # p.save()
+
+    # # FileResponse sets the Content-Disposition header so that browsers
+    # # present the option to save the file.
+    # buffer.seek(0)
+
+    # enc = pdfencrypt.StandardEncryption("pass", canPrint=0)
+
+    
+    # buf = io.BytesIO()
+    # c = canvas.Canvas(buf)
+    # width, height = A4
+    # textob = c.beginText()
+    # textob.setTextOrigin(inch, inch)
+    # textob.setFont("Helvetica", 14)
+    # lines = []
+    # users = User.objects.filter(is_staff=False)
+    # for i in range(10):
+    #     lines.append(('1', '2', '3'))
+    # table = Table(lines, colWidths=10 * mm)
+    # table.setStyle(
+    #     [("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+    #                 ("ALIGN", (0, 0), (-1, -1), "CENTER"),
+    #                 ('INNERGRID', (0, 0), (-1, -1), 0.25, 'black')])
+
+    # table.wrapOn(c, width, height)
+    # table.drawOn(c, 0 * mm, 5 * mm)
+
+    # styles = getSampleStyleSheet()
+    # ptext = "This is an example."
+    # p = Paragraph(ptext)
+    # p.wrapOn(c, 50 * mm, 50 * mm)  # size of 'textbox' for linebreaks etc.
+    # p.drawOn(c, 0 * mm, 0 * mm)  # position of text / where to draw
+    # c.save()
+    # buf.seek(0)
+
+
+    # return FileResponse(buf, as_attachment=True, filename='hello.pdf')
+
+def download_api_response_pdf(request, **kwargs):
+    from django.http import FileResponse
+    import io
+    from reportlab.pdfgen import canvas
+    from reportlab.lib.units import inch
+    from reportlab.lib.pagesizes import letter
+    from django.http import FileResponse
+
+    api = DeviseApis.objects.get(pk = kwargs['pk'])
+    lines = []
+
+    # craete byte streem buffer
+    beffer = io.BytesIO()
+    # create canvas
+    c = canvas.Canvas(beffer, pagesize = letter, bottomup = 0)
+    # create a text object
+    textob = c.beginText()
+    textob.setTextOrigin(inch, inch)
+    textob.setFont('Helvetica', 14)
+
+    # add some lines to text
+    lines = [
+        'Line1',
+        'Line1',
+        'Line1',
+        'Line1',
+    ]
+
+    for line in lines:
+        textob.textLine(line)
+    
+    c.drawText(textob)
+    c.showPage()
+    c.save()
+    beffer.seek(0)
+
+    return FileResponse(beffer, as_attachment=True, filename="recomanded.pdf")
+
+    
+def download_api_response_csv(request, **kwargs):
+    import csv
+    from django.http import HttpResponse
+
+    response = HttpResponse(content_type = 'text/csv')
+    response['Content-Disposition'] = 'attachment; filename = response.csv'
+    writer = csv.writer(response)
+    rows = [[1, 2, 3, 4],[1, 2, 3, 4],[1, 2, 3, 4]]
+
+    writer.writerows(rows)
+    return response
+
