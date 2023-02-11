@@ -45,7 +45,7 @@
                 </div>
                 <form action="" method="POST">{% csrf_token %}</form>
                 <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close"> -->
-                    <a href="{% url 'notifications' active_notif.pk %}">
+                    <a href="{% url 'notifications' active_notif.pk %}" title="Click to make it unread">
                         <span aria-hidden="true"><i class="material-icons" style="float: right;">clear</i></span>
                     </a>
                 <!-- </button> -->
@@ -65,7 +65,7 @@
                 <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true"><a href="#"><i class="material-icons">clear</i></a></span>
                 </button> -->
-                <b>{{ inactive_notif.name }}:</b> Yuhuuu! You've got your $11.99 album from The Weeknd
+                <b>{{ inactive_notif.name }}:</b> <b>{{ inactive_notif.phone }} </b> --> <b>{{ inactive_notif.mail }} :</b>  {{ inactive_notif.message }}
             </div>
         </div>
     {% endfor %}

@@ -3,6 +3,7 @@ import datetime
 
 import os
 from twilio.rest import Client
+from . models import ColumnName
 
 
 def create_user(username, email):
@@ -30,3 +31,6 @@ def change_password(username, password):
     user = User.objects.get(username=username)
     user.set_password(password)
     user.save()
+
+def get_all_dynamic_coulmns():
+    return ColumnName.objects.all()

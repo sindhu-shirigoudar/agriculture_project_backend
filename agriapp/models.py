@@ -79,3 +79,12 @@ class APICountThreshold(models.Model):
 
     def __str__(self):
         return self.devise.name
+
+
+class ColumnName(models.Model):
+    field_name = models.CharField(max_length = 255)
+
+class ColumnData(models.Model):
+    field       = models.ForeignKey(to = 'ColumnName', on_delete = models.CASCADE)
+    api         = models.ForeignKey(to = 'DeviseApis', on_delete = models.CASCADE, unique = True)
+    field_value = models.FloatField(default = 0.0)

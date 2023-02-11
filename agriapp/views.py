@@ -5,7 +5,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 
 from .forms import ContactForm, DeviseForm
-from .models import ContactDetails, Devise, DeviseApis, APICountThreshold
+from .models import ContactDetails, Devise, DeviseApis, APICountThreshold, ColumnName
 
 from . import UserFuncrtions
 from django.views.generic import UpdateView, TemplateView
@@ -403,6 +403,7 @@ class Dashboard(TemplateView):
             'devise_name'           : devise_name,
             'devise_counts'         : len(devises),
             'api_counts'            : len(DeviseApis.objects.all()),
+            'dynamic_fields'        : len(ColumnName.objects.all()),
             'notification_counts'   : len(ContactDetails.objects.all()),
             'notification_active'   : notifications_all.filter(status=True),
             'notification_inactive' : notifications_all.filter(status=False),
@@ -521,3 +522,38 @@ def download_api_response_csv(request, **kwargs):
     writer.writerows(rows)
     return response
 
+def dynamic_fields(request, **kwargs):
+    resp = user_login_access(request)
+    if  resp:
+        return resp
+    template_name = 'dynamic_fields.html'
+    columns = UserFuncrtions.get_all_dynamic_coulmns()
+    context = {
+        'columns' : columns,
+        'columns_count' : len(columns),
+    }
+    return render(request, template_name = template_name, context=context)
+
+def delete_field(request, id):
+    field = ColumnName.objects.get(id=id)
+    field.delete()
+    messages.success(request, "Field deleted successfully.")
+    return redirect('/dynamic_fields/')
+
+def add_field(request):
+    resp = user_login_access(request)
+    if  resp:
+        return resp
+    template_name = "add_field.html"
+    if request.method== 'GET':
+        return render(request, template_name = template_name)
+    elif request.method == 'POST':
+        field_name = request.POST['field'].strip().replace(' ', '_')
+        if field_name:
+            ColumnName.objects.create(field_name=field_name)
+            messages.success(request, "Field deleted successfully.")
+            messages.error(request, "Please enter valid field name.")
+            return redirect('/dynamic_fields/')
+        else :
+            messages.error(request, "Please enter valid field name.")
+            return redirect('/add_field/')

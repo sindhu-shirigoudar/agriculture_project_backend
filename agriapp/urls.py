@@ -12,7 +12,7 @@ urlpatterns = [
     path('login1/', v.login, name = "login1"),
     path('logout/', v.logout, name = "logout"),
     path('acess_denied/', TemplateView.as_view(template_name="acess_denied.html"), name = "acess_denied"),
-    path('register/', TemplateView.as_view(template_name="register.html"), name = "register"),
+    path('add_field/', login_required(v.add_field), name = "add_field"),
     path('add-devise/', login_required(v.add_devise), name = "add-devise"),
     path('edit-devise/<int:pk>/', login_required(v.edit_devise), name = "edit-devise"),
     path('device-list/', login_required(v.devise_list), name = "device-list"),
@@ -32,5 +32,7 @@ urlpatterns = [
     path('update-api-threshold/<int:pk>/<int:devise_pk>/', APIThresholdFormUpdate.as_view(), name = "update-api-threshold"),
     path('download_api_response_pdf/<int:pk>/', login_required(v.download_api_response_pdf), name = "download-api-response-pdf"),
     path('download_api_response_csv/<int:pk>/', login_required(v.download_api_response_csv), name = "download-api-response-csv"),
+    path('dynamic_fields/', login_required(v.dynamic_fields), name = "dynamic_fields"),
+    path('delete_field/<int:id>/', login_required(v.delete_field), name = "delete_field"),
 ]
 
