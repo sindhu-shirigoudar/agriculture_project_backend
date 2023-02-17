@@ -17,6 +17,14 @@
 	</head>
 
 	<body>
+		<!-- success message -->
+		{% if messages %}
+		{% for message in messages %}
+			<div class="alert alert-dismissible alert-faile">
+			<strong>{{message}}</strong>
+			</div>
+		{% endfor %}
+		{% endif %}
 		<div class="wrapper">
 			<div class="inner">
 				<a href="{% url 'dashboard' %}"><img src="{% static '/register/images/image-1.png' %}" alt="" class="image-1"></a>

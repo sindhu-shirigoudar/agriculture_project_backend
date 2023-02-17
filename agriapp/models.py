@@ -82,7 +82,7 @@ class APICountThreshold(models.Model):
 
 
 class ColumnName(models.Model):
-    field_name = models.CharField(max_length = 255)
+    field_name = models.CharField(max_length = 255, unique=True)
 
 class ColumnData(models.Model):
     field       = models.ForeignKey(to = 'ColumnName', on_delete = models.CASCADE)

@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from .serializers import DeviseApiSerializer
-from agriapp.models import DeviseApis, Devise, DeviseLocation
+from agriapp.models import DeviseApis, Devise, DeviseLocation, ColumnData
 from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
+from agriapp import UserFuncrtions
+
 # Create your views here.
 
 @api_view(['GET', 'POST'])
@@ -56,6 +58,17 @@ def add_soil_data(request):
         serializer = DeviseApiSerializer(data = request.data)
         if serializer.is_valid():
             serializer.save()
+            api_id = serializer.data['id']
+            dynamic_fields = UserFuncrtions.get_all_dynamic_fields()
+            if (dynamic_fields):
+                for dynamic_field in dynamic_fields:
+                    field_name = dynamic_field.field_name
+                    if field_name in request.data.keys():
+                        print(api_id,'---------1')
+                        print(DeviseApis.objects.get(pk=api_id),'---------1')
+                        print(dynamic_field,'---------2')
+                        print(request.data[field_name],'------------3')
+                        ColumnData.objects.create(api = DeviseApis.objects.get(pk=api_id), field = dynamic_field, field_value = request.data[field_name])
             return Response({'message' : 'Soil data added successfully'}, status=status.HTTP_200_OK)
         else:
             return Response({'errors' : serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
