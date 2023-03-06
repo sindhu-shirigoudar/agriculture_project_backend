@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
-from agriapp import UserFuncrtions
+from agriapp import UserFuncrtions, FertilizerCalculation
 
 # Create your views here.
 
@@ -64,14 +64,17 @@ def add_soil_data(request):
                 for dynamic_field in dynamic_fields:
                     field_name = dynamic_field.field_name
                     if field_name in request.data.keys():
-                        print(api_id,'---------1')
-                        print(DeviseApis.objects.get(pk=api_id),'---------1')
-                        print(dynamic_field,'---------2')
-                        print(request.data[field_name],'------------3')
                         ColumnData.objects.create(api = DeviseApis.objects.get(pk=api_id), field = dynamic_field, field_value = request.data[field_name])
             return Response({'message' : 'Soil data added successfully'}, status=status.HTTP_200_OK)
         else:
             return Response({'errors' : serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+    except  Exception as e:
+        return Response({'message' : "Something went wrong while fetching data please check the parameters"}, status.HTTP_400_BAD_REQUEST)  
+
+@api_view(['POST'])
+def get_crops(request):
+    try:
+        return Response({'message' : 'Soil data received successfully', 'crops' : FertilizerCalculation.get_All_crops()}, status=status.HTTP_200_OK)
     except  Exception as e:
         return Response({'message' : "Something went wrong while fetching data please check the parameters"}, status.HTTP_400_BAD_REQUEST)        
 
