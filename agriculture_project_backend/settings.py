@@ -128,12 +128,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-if DEBUG:
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'static')
-    ]
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = [
+    os.path.join(os.path.dirname(BASE_DIR), 'static-cdn-local')
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1',
                  'www.arkashine-innovations.com', 'arkashine-innovations.com']
