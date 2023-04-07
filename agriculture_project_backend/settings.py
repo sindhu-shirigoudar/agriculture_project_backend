@@ -132,7 +132,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static-cdn-local')
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1',
                  'www.arkashine-innovations.com', 'arkashine-innovations.com']
