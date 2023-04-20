@@ -59,7 +59,7 @@ ROOT_URLCONF = 'agriculture_project_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,13 +128,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS =[
-    os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = [
+    os.path.join(os.path.dirname(BASE_DIR), 'static-cdn-local')
 ]
 
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static-cdn-local')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'www.arkashinesinnovations.com', 'arkashinesinnovations.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '13.51.217.17',
+                 'www.arkashine-innovations.com', 'arkashine-innovations.com']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -147,6 +149,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-DATE_INPUT_FORMATS =  ['%Y/%m/%d']
+DATE_INPUT_FORMATS = ['%Y/%m/%d']
 
 LOGIN_URL = '/'
