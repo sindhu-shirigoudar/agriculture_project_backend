@@ -89,11 +89,11 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="mb-3">
-                    {% if field_errors.setial_no %}
-                      <span style="color: red;"> {{ field_errors.setial_no }}</span>
+                    {% if field_errors.serial_no %}
+                      <span style="color: red;"> {{ field_errors.serial_no }}</span>
                     {% endif %}
                     <label class="form-label">Serial ID</label>
-                    <input type="text" class="form-control" name="setial_no" required {{disabled}} value="{{ devise.setial_no }}">
+                    <input type="text" class="form-control" name="serial_no" required {{disabled}} value="{{ devise.serial_no }}">
                   </div>
                 </div>
                 <div class="col-lg-6">

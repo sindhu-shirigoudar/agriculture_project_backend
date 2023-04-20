@@ -231,7 +231,7 @@ def calc_fymanure(crop_type):
 
 ''' case 1 
 
-if n or p or k value is missing then get npk from crop name dict
+if n or p or k value is missing then get npk from crop name dict above
 
 
 case 2

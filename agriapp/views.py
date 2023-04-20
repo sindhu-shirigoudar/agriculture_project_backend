@@ -35,7 +35,7 @@ def user_login_access(request):
 
         request.session['pk']             = devise.pk
         request.session['name']           = devise.name
-        request.session['setial_no']      = devise.setial_no
+        request.session['serial_no']      = devise.serial_no
         request.session['devise_id']      = devise.devise_id
         request.session['chipset_no']     = devise.chipset_no
         request.session['email']          = devise.email
@@ -125,7 +125,7 @@ def add_devise(request):
             default_values = {
                 'name'           : request.POST['name'],
                 'devise_id'      : request.POST['devise_id'],
-                'setial_no'      : request.POST['setial_no'],
+                'serial_no'      : request.POST['serial_no'],
                 'chipset_no'     : request.POST['chipset_no'],
                 'email'          : request.POST['email'],
                 'address1'       : request.POST['address1'],
@@ -172,7 +172,7 @@ def edit_devise(request, **kwargs):
             default_values = {
                 'name'           : request.POST['name'],
                 'devise_id'      : request.POST['devise_id'],
-                'setial_no'      : request.POST['setial_no'],
+                'serial_no'      : request.POST['serial_no'],
                 'chipset_no'     : request.POST['chipset_no'],
                 'email'          : request.POST['email'],
                 'address1'       : request.POST['address1'],

@@ -11,7 +11,7 @@ class DeviseForm(forms.ModelForm):
         model = Devise
         fields = [
             'name', 
-            'setial_no', 
+            'serial_no', 
             'devise_id', 
             'chipset_no', 
             'email', 

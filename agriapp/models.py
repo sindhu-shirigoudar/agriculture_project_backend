@@ -15,7 +15,7 @@ class ContactDetails(models.Model):
 
 class Devise(models.Model):
     name           = models.CharField(max_length=255)
-    setial_no      = models.CharField(max_length=255, unique=True)
+    serial_no      = models.CharField(max_length=255, unique=True)
     devise_id      = models.CharField(max_length=255, unique=True) #devise id or user name
     chipset_no     = models.CharField(max_length=255, unique=True)
     email          = models.EmailField()
@@ -54,6 +54,7 @@ class DeviseApis(models.Model):
     chlorine              = models.FloatField(default=0.0)
     nickel                = models.FloatField(default=0.0)
     organic_carboa        = models.FloatField(default=0.0)
+    crop_type             = models.FloatField(default=0.0)
     created_at            = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
