@@ -16,6 +16,7 @@ from django.views.generic import CreateView, UpdateView
 from map.views import get_marker_color
 from django.contrib.auth.models import User
 from .devise_details import *
+from .import FertilizerCalculation
 
 # Create your views here.
 
@@ -308,6 +309,7 @@ def api_overview(request, **kwargs):
     template_name = "api_details.html"
     all_dynamic_fields = UserFuncrtions.get_all_dynamic_fields()
     dynamic_field_data = {field.field_name : (UserFuncrtions.get_all_dynamic_field_value(api, field).field_value if UserFuncrtions.get_all_dynamic_field_value(api, field) else 0.0) for field in all_dynamic_fields}
+    crops_data = FertilizerCalculation.get_All_crops(api.nitrogen, api.phosphorous, api.potassium, api.crop_type)
     context = {
         'api' : api,
         'devise_name' : api.device.name,

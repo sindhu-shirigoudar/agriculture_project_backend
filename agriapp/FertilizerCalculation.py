@@ -1,166 +1,166 @@
 crops = {
-    "rice_or_addy": {
+    "rice_or_paddy": {
         "frequency": "Quarterly",
         "npk": ["100:60:60"],
-        "target_yield": "18-19 Quintals per acre",
+        "target_yield": ["18-19 Quintals per acre"],
     },
     "wheat": {
         "frequency": "Annual",
         "npk": ["40:30:20"],
-        "target_yield": "10 to 15 Quintals per acre",
+        "target_yield": ["10 to 15 Quintals per acre"],
     },
     "jowar": {
         "frequency": "Annual",
         "npk": [],
-        "target_yield": "",
+        "target_yield": [""],
     },
     "bajra": {
         "frequency": "Annual",
         "npk": [],
-        "target_yield": "",
+        "target_yield": [""],
     },
     "ginger": {
         "frequency": "Annual",
         "npk": ["40:20:20"],
-        "target_yield": "15-20 tons per acre",
+        "target_yield": ["15-20 tons per acre"],
     },
     "tomato": {
         "frequency": "Annual",
         "npk": ["100:100:100"],
         # "npk": "hybrid- 100:100:100",
-        "target_yield": "24 - 30 tons per acre",
+        "target_yield": ["24 - 30 tons per acre"],
     },
     "tomato_improved_varieties": {
         "frequency": "Annual",
         "npk": ["46:40:24"],
-        "target_yield": "10-12 tons per acre",
+        "target_yield": ["10-12 tons per acre"],
     },
     "garlic": {
         "frequency": "Annual",
         "npk": ["50:25:25"],
-        "target_yield": "3.2 tons per acre",
+        "target_yield": ["3.2 tons per acre"],
     },
     "urad": {
         "frequency": "Annual",
         "npk": ["10:20:10"],
-        "target_yield": "4-7 Quintals per acre",
+        "target_yield": ["4-7 Quintals per acre"],
     },
     "chilli": {
         "npk": ["60:30:30"],
-        "target_yield": "Green chilli- 14 to 16 ton per acre\nRed Chilli- 1.4 to 1.6 ton per acre",
+        "target_yield": ["Green chilli- 14 to 16 ton per acre", "Red Chilli- 1.4 to 1.6 ton per acre"],
         "frequency": "Half"
     },
     "cotton": {
         "npk": ["60:30:30"],
-        "target_yield": "Black Soil- 7 to 8 Quintals per acre\nSandy Soil- 5 to 6 Quintls per acre",
+        "target_yield": ["Black Soil- 7 to 8 Quintals per acre", "Sandy Soil- 5 to 6 Quintls per acre"],
         "frequency": "Annual"
     },
     "chana": {
         "npk": ["10:20:20"],
-        "target_yield": "6 to 8 Quintals per acre",
+        "target_yield": ["6 to 8 Quintals per acre"],
         "frequency": "Quartely"
     },
     "sunflower": {
         "npk": ["36:36:25"],
-        "target_yield": "8 to 10 Quintasl per acre",
+        "target_yield": ["8 to 10 Quintasl per acre"],
         "frequency": "Annual"
     },
     "onion": {
         "npk": ["15:30:50"],
-        "target_yield": "8 to 10 tonns per acre",
+        "target_yield": ["8 to 10 tonns per acre"],
         "frequency": "Annual"
     },
     "moong": {
         "npk": ["10:20:20"],
-        "target_yield": "4 to 5 Quintals/acre",
+        "target_yield": ["4 to 5 Quintals/acre"],
         "frequency": "Annual"
     },
     "masoori": {
         "npk": ["10:20:10"],
-        "target_yield": "5 to 6 Quintal/acre",
+        "target_yield": ["5 to 6 Quintal/acre"],
         "frequency": "Annual"
     },
     "ragi": {
         "npk": ["40:20:20"],
-        "target_yield": "12 to 18 Quintals per acre",
+        "target_yield": ["12 to 18 Quintals per acre"],
         "frequency": "Annual"
     },
     "sugarcane": {
         "npk": ["100:40:50"],
-        "target_yield": "60 to 70 tonns per acre",
+        "target_yield": ["60 to 70 tonns per acre"],
         "frequency": "Annual"
     },
     "arabica_coffee": {
         "npk": ["15:24:12", "20:30:15", "30:47:23", "56:36:56", "64:48:64"],
         "duration": ["1st year", "2nd year", "3rd year", "4th year", "5th year"],
         # "npk": "1st year-15:24:12\n2nd year-20:30:15\n3rd year-30:47:23\n4th year- 56:36:56\n5th year-64:48:64",
-        "target_yield": "800 tonns per acre",
+        "target_yield": ["800 tonns per acre"],
         "frequency": "Annual"
     },
     "maize": {
         "npk": ["40:30:16", "60:30:15"],
         "duration": ["Dry land", "Irrigated"],
         # "npk": "Dry land-40:30:16\nIrrigated 60:30:15",
-        "target_yield": "32- 35 tonns per acre\n30-33 tonns per acre",
+        "target_yield": ["32- 35 tonns per acre", "30-33 tonns per acre"],
         "frequency": "Annual"
     },
     "groundnut": {
         "npk": ["10:30:15"],
-        "target_yield": "8 to 10 tonns per acre",
+        "target_yield": ["8 to 10 tonns per acre"],
         "frequency": "Annual"
     },
     "sesame": {
         "npk": ["15:10:10"],
-        "target_yield": "1.6 to 2 tonns per acre",
+        "target_yield": ["1.6 to 2 tonns per acre"],
         "frequency": "Annual"
     },
     "arecanut": {
         "npk": ["100:42:20"],
-        "target_yield": "500 to 600 kg per acre",
+        "target_yield": ["500 to 600 kg per acre"],
         "frequency": "Annual"
     },
     "rubber": {
         "npk": ["25:25:10", "90:90:40", "110:110:50", "90:90:40", "140: 90:60"],
-        "duration": ["1st year gm per tree, 2nd year gm per tree, 3rd year gm per tree, 4th year gm per tree, 5th year"],
+        "duration": ["1st year gm per tree", "2nd year gm per tree", "3rd year gm per tree", "4th year gm per tree", "5th year"],
         # "npk": "1st year-25:25:10 gm per tree, 2nd year- 90:90:40 gm per tree, 3rd year- 110:110:50 gm per tree, 4th year- 90:90:40 gm per tree, 5th year- 140: 90:60",
-        "target_yield": "300-400 kg/acre",
+        "target_yield": ["300-400 kg/acre"],
         "frequency": "Annual"
     },
     "banana": {
         "npk": ["260:130:270", "175:105:220", "160:96:200"],
         "duration": ["pache variety", "kandu variety", "other varieties"],
         # "npk": "pache variety- 260:130:270, kandu variety- 175:105:220, other varieties- 160:96:200",
-        "target_yield": "8-12 tonns per acre for pache variety, 12-14 tonns per acre for kandu variety, 12-16 tonns per acre for other varieties",
+        "target_yield": ["8-12 tonns per acre for pache variety", "12-14 tonns per acre for kandu variety", "12-16 tonns per acre for other varieties"],
         "frequency": "Annual"
     },
     "cow_pea_or_aldisandi": {
         "npk": ["10:20:10"],
-        "target_yield": "5 to 6 Quintals per acre",
+        "target_yield": ["5 to 6 Quintals per acre"],
         "frequency": "Annual"
     },
     "kusume_or_safflower": {
         "npk":[ "16:16:05"],
-        "target_yield": "4 to 5 Quintals per acre",
+        "target_yield": ["4 to 5 Quintals per acre"],
         "frequency": "Annual"
     },
     "soyabean": {
         "npk": ["12:32:15"],
-        "target_yield": "10-12 Quintals per acre",
+        "target_yield": ["10-12 Quintals per acre"],
         "frequency": "Annual"
     },
     "castor": {
         "npk": ["15:15:10"],
-        "target_yield": "Hybrids-5 to 7 Quintals per acre, Improved varities-4 to 5 Quintal per acre",
+        "target_yield": ["Hybrids-5 to 7 Quintals per acre", "Improved varities-4 to 5 Quintal per acre"],
         "frequency": "Annual"
     },
     "coriander": {
         "npk": ["14:14:14"],
-        "target_yield": "Seed- 200 to 300 Kg per acre, plant- 3.4 to 4 tonns per acre",
+        "target_yield": ["Seed- 200 to 300 Kg per acre", "plant- 3.4 to 4 tonns per acre"],
         "frequency": "Annual"
     },
     "turmeric": {
         "npk": ["60:51:40"],
-        "target_yield": "8 to 10 tonns per acre",
+        "target_yield":[ "8 to 10 tonns per acre"],
         "frequency": "Annual"
     }
 }
@@ -312,5 +312,26 @@ print(f"Soil fertility: {fertility}")
 print(f"FYM: {fym} tons/hectare")
 print("Crop target yeild given in object : target yield from the dict for given crop in API")
 
-def get_All_crops():
+def get_All_crops(n, p, k, crop):
+    if crop in crops: # check if crop is valid
+        n_p_k = []
+        if not n or not p or not k: # if any one of the parms are not present the fetch values from the crops table
+            if crop in crops:
+                crop_n_p_ks = crops[crop]['npk']
+                for values in crop_n_p_ks:
+                    v = values.split(':')
+                    n_p_k.append({'n' : v[0], 'p' : v[1], 'k' : v[2]})
+        else:
+            n_p_k.append({'n' : n, 'p' : p, 'k' : k})
+    print(n_p_k,'------------')
+    mop_dose, mop_in_hec, dap_dose, dap_in_hec, urea_dose, urea_in_hec, ssp_dose, ssp_in_hec = calculate_fertilizer_doses(
+    npk_recommended, kg)
+
+    print("The recommended doses of fertilizer are:")
+    print("Urea:", urea_dose, "kg/hectare", urea_in_hec, "kg/acre")
+    print("DAP:", dap_dose, "kg/hectare", dap_in_hec, "kg/acre")
+    print("MOP:", mop_dose, "kg/hectare", mop_in_hec, "kg/acre")
+    print("SSP:", ssp_dose, "kg/hectare", ssp_in_hec, "kg/acre")
+
+
     return crops.keys()
