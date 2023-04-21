@@ -324,6 +324,7 @@ def get_All_crops(n, p, k, crop):
         else:
             n_p_k.append({'n' : n, 'p' : p, 'k' : k})
     print(n_p_k,'------------')
+    kg = 100
     mop_dose, mop_in_hec, dap_dose, dap_in_hec, urea_dose, urea_in_hec, ssp_dose, ssp_in_hec = calculate_fertilizer_doses(
     npk_recommended, kg)
 
