@@ -1,0 +1,193 @@
+{% load static %}
+
+<head>
+  <title>Agriculture Biodiversity</title>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="{% static '/home/css/home1.css' %}"
+    type="text/css"
+  />
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+   
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 1;
+      display: none;
+      min-width: 200px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-item {
+      display: block;
+      padding: 5px;
+      color: #333;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .dropdown-item:hover {
+      background-color: #eaeaea;
+    }
+
+    @media (max-width: 767px) {
+      .container {
+        padding: 10px;
+      }
+
+      .dropdown-menu {
+        position: static;
+        display: block;
+        box-shadow: none;
+        border-radius: 0;
+        margin-top: 10px;
+      }
+    }
+  </style>
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css"
+  />
+</head>
+<main style="background-color: beige; flex: content; height: 100vh;">
+  <center>
+    <nav
+      class="navbar fixed-top navbar-expand navbar-dark link-light nav"
+      style="
+        height: auto;
+        background-color: #4b2711;
+        flex: auto;
+        justify-content: space-evenly;
+        align-items: center;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        font: 700;
+        color: white;
+      "
+    >
+      <div class="container-fluid">
+        <!-- <a class="navbar-brand" href="{% url 'dashboard' %}"> -->
+          <h3 class="my-heading ">ArkaShine Innovations Pvt Ltd</h3>
+        <!-- </a> -->
+      </div>
+    </nav>
+    <div class="container">
+      <h1>Agriculture Biodiversity</h1>
+
+      <h3 class="" style="font-weight: 300; padding-top: 15px; padding-bottom: 20px;">Click on the button to open the dropdown menu.</h3>
+
+      <div class="dropdown p3" style="padding: 12px;">
+        <button
+          class="btn btn-primary dropdown-toggle display-3 "
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          style="font-size: larger; padding: 9px; border-radius: 12px;"
+        >
+         select cerials
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Rice</a>
+          <a class="dropdown-item" href="#">Maize</a>
+          <a class="dropdown-item" href="#"> wheet</a>
+          
+        </div>
+      </div>
+
+      <div class="dropdown p3" style="padding: 12px;">
+        <button
+          class="btn btn-primary dropdown-toggle display-3 "
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          style="font-size: larger; padding: 9px; border-radius: 12px;"
+        >
+         select Millets
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Bajra</a>
+          <a class="dropdown-item" href="#">Ragi</a>
+          <a class="dropdown-item" href="#"> Sorghum</a>
+          
+        </div>
+      </div>
+
+      <div class="dropdown p3" style="padding: 12px;">
+        <button
+          class="btn btn-primary dropdown-toggle display-3 "
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          style="font-size: larger; padding: 9px; border-radius: 12px;"
+        >
+         select Pulses
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Black gram</a>
+          <a class="dropdown-item" href="#">Green gram</a>
+          <a class="dropdown-item" href="#"> cow pea</a>
+          
+        </div>
+      </div>
+
+      <div class="dropdown p3" style="padding: 12px;">
+        <button
+          class="btn btn-primary dropdown-toggle display-3 "
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          style="font-size: larger; padding: 9px; border-radius: 12px;"
+        >
+         select oil seeds
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">GroundNut</a>
+          <a class="dropdown-item" href="#">SunFlower</a>
+          <a class="dropdown-item" href="#"> castor</a>
+          
+        </div>
+      </div>
+
+    </div>
+  </center>
+</main>
