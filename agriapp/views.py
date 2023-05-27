@@ -504,5 +504,5 @@ def add_field(request):
             return redirect('/add_field/')
 
 
-def new_page(request):
-     return render(request, 'new_page.html')
+def know_what_grow(request):
+     return render(request, 'know_what_grow.html')

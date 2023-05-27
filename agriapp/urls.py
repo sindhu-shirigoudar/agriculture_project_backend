@@ -35,6 +35,6 @@ urlpatterns = [
     path('download_api_response_csv/<int:pk>/', login_required(v.download_api_response_csv), name = "download-api-response-csv"),
     path('dynamic_fields/', login_required(v.dynamic_fields), name = "dynamic_fields"),
     path('delete_field/<int:id>/', login_required(v.delete_field), name = "delete_field"),
-    path('new_page/', v.new_page, name='new_page'),
+    path('know_what_grow/', v.know_what_grow, name='know_what_grow'),
 ]
 
