@@ -2,13 +2,13 @@
 # from .views import index
 from django.urls import path
 from django.views.generic import TemplateView
-from . import views as v
+from .import views as v
 from .views import APIThresholdForm, APIThresholdFormUpdate, Dashboard
 from django.contrib.auth.decorators import login_required
 
 
 urlpatterns = [
-    path('',  v.home, name = "home"),
+    path('https://sindhu-shirigoudar-obscure-chainsaw-6p6q747w9pq2rr7q.github.dev/',  v.home, name = "home"),
     path('login/', TemplateView.as_view(template_name="login.html"), name = "login"),
     path('login1/', v.login, name = "login1"),
     path('logout/', v.logout, name = "logout"),
@@ -36,5 +36,6 @@ urlpatterns = [
     path('dynamic_fields/', login_required(v.dynamic_fields), name = "dynamic_fields"),
     path('delete_field/<int:id>/', login_required(v.delete_field), name = "delete_field"),
     path('know_what_grow/', v.know_what_grow, name='know_what_grow'),
+    path('know_more_about_arkashine/', v.know_more_about_arkashine, name='know_more_about_arkashine'),
 ]
 

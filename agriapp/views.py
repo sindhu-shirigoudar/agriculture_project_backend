@@ -505,4 +505,30 @@ def add_field(request):
 
 
 def know_what_grow(request):
-     return render(request, 'know_what_grow.html')
+    return render(request, 'know_what_grow.html')
+
+def know_more_about_arkashine(request):
+    videos = [
+        {
+            'title': 'Introduction to Agriculture',
+            'videos': [
+                {'title': 'Video 1', 'link': 'https://www.youtube.com/watch?v=video_id1'},
+                {'title': 'Video 2', 'link': 'https://www.youtube.com/watch?v=video_id2'},
+            ],
+        },
+        {
+            'title': 'Soil Test Procedure',
+            'videos': [
+                {'title': 'Video 3', 'link': 'https://www.youtube.com/watch?v=video_id3'},
+                {'title': 'Video 4', 'link': 'https://www.youtube.com/watch?v=video_id4'},
+            ],
+        },
+        {
+            'title': 'Usage and Advantages of Soil Test',
+            'videos': [
+                {'title': 'Video 5', 'link': 'https://www.youtube.com/watch?v=video_id5'},
+                {'title': 'Video 6', 'link': 'https://www.youtube.com/watch?v=video_id6'},
+            ],
+        },
+    ]
+    return render(request, 'know_more_about_arkashine.html', {'videos': videos})

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Tabs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .tabs {
+            display: flex;
+        }
+        
+        .tab {
+            flex: 1;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-right: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        
+        .tab.active {
+            background-color: #fff;
+        }
+        
+        .tab-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .video-container {
+            margin-top: 20px;
+        }
+        
+        .video-item {
+            margin-bottom: 10px;
+        }
+        
+        .video-item h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .video-item video {
+            width: 100%;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="tabs">
+        {% for tab in videos %}
+        <div class="tab">
+            <h2 class="tab-title">{{ tab.title }}</h2>
+            <div class="video-container">
+                {% for video in tab.videos %}
+                <div class="video-item">
+                    <h4>{{ video.title }}</h4>
+                    <video src="{{ video.link }}" controls></video>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        // Add interactive behavior to tabs
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                tabs.forEach(t => t.classList.remove('active'));
+                // Add active class to the clicked tab
+                tab.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
